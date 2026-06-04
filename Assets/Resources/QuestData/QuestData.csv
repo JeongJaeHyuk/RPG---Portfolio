@@ -1,0 +1,9 @@
+QuestID,QuestName,NPCID,QuestType,IsRepeatable,RequiredLevel,PreQuestID,Description,TargetType,TargetNameKorean,TargetCount,RewardExp,RewardGold,RewardItemID,RewardItemCount
+1,암석거인 토벌,1,Kill,0,1,0,마을 근처의 암석거인을 처치하세요,RockGolem,암석거인,1,100,50,0,0
+2,암석 파편 수집,1,Collect,1,1,1,암석거인의 파편을 모아주세요,Rock_Fragment,암석 파편,3,50,30,0,0
+3,오크 지대로,1,Visit,0,3,1,오크 지대에 있는 NPC를 찾아가시오,NPC2,NPC,1,150,100,0,0
+11,오크 토벌,2,Kill,0,5,3,푸른오크를 처치하세요,BlueOrc,푸른오크,8,250,120,0,0
+12,레드오크 사냥,2,Kill,0,6,11,레드오크를 처치하세요,RedOrc,레드오크,8,280,140,0,0
+13,그린오크 정리,2,Kill,0,7,12,그린오크를 처치하세요,GreenOrc,그린오크,8,300,150,0,0
+14,오크의 이빨 수집,2,Collect,0,7,13,오크의 이빨을 수집하세요,Orc_Tooth,오크의 이빨,10,250,130,101,1
+15,오크왕 토벌,2,Boss,0,10,14,오크 지대의 왕을 처치하세요,OrcKing,오크왕,1,1500,800,201,1

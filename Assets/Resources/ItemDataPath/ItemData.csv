@@ -1,0 +1,19 @@
+itemId,itemName,iconName,description,itemType,armorType,attackPower,defense,hpRecover,mpRecover,price,maxCount
+101,녹슨 검,rusty_sword,녹이 슨 낡은 검입니다,Weapon,None,5,0,0,0,50,1
+102,철 검,steel_sword,기본적인 철 검입니다,Weapon,None,15,0,0,0,150,1
+103,사브르,regular_sword,곡선형의 날렵한 검입니다,Weapon,None,25,0,0,0,300,1
+104,미스릴 검,mithril_sword,가벼우면서도 강력한 미스릴 검입니다,Weapon,None,40,0,0,0,500,1
+105,레전더리 검,ice_sword,전설로만 전해지던 검입니다,Weapon,None,70,0,0,0,1000,1
+201,가죽 갑옷,leather_armor,가벼운 가죽 갑옷입니다,Armor,Chest,0,10,0,0,100,1
+202,철 갑옷,General_armor,튼튼한 철 갑옷입니다,Armor,Chest,0,20,0,0,250,1
+203,강철 갑옷,advanced armor,단단한 강철로 만든 갑옷입니다,Armor,Chest,0,35,0,0,450,1
+301,가죽 모자,leather_helmet,기본적인 가죽 모자입니다,Armor,Head,0,5,0,0,50,1
+302,철 투구,General_Helmat,튼튼한 철 투구입니다,Armor,Head,0,10,0,0,120,1
+303,강철 투구,advanced Helmat,단단한 강철 투구입니다,Armor,Head,0,18,0,0,220,1
+1001,체력 물약,Small_Health_Potion,체력을 50 회복합니다,Consumable,None,0,0,50,0,50,5
+1002,마나 물약,Small_Mana_Potion,마나를 30 회복합니다,Consumable,None,0,0,0,30,40,5
+1003,큰 체력 물약,Big_Health_Potion,체력을 150 회복합니다,Consumable,None,0,0,150,0,150,5
+1004,큰 마나 물약,Big_Mana_Potion,마나를 100 회복합니다,Consumable,None,0,0,0,100,120,5
+2001,암석거인의 파편,Rock_Fragment,암석거인의 파편입니다.,Material,None,0,0,0,0,10,100
+2002,오크의 이빨,Orc_Tooth,오크의 이빨입니다.,Material,None,0,0,0,0,15,100
+2003,오크왕의 방망이,Great_Orc_Cudgel,오크왕이 사용하던 무기입니다.,Material,None,0,0,0,0,1000,1

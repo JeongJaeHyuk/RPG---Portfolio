@@ -1,0 +1,6 @@
+monsterName,itemId,dropRate,dropCount
+RockGolem,2001,0.7,1
+GreenOrc,2002,0.3,1
+BlueOrc,2002,0.5,1
+RedOrc,2002,0.6,2
+OrcKing,2003,0.5,1

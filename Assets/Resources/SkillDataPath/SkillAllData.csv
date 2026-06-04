@@ -1,0 +1,26 @@
+name,Level,coolTime,Damage,mpCost
+rolling,1,10,0,10
+rolling,2,8,0,10
+rolling,3,6,0,10
+rolling,4,4,0,10
+rolling,5,3,0,10
+bottom cutting,1,12,1.2,50
+bottom cutting,2,11,1.4,42
+bottom cutting,3,10,1.6,35
+bottom cutting,4,8,1.8,27
+bottom cutting,5,6,2.0,20
+Take it down,1,8,1.0,60
+Take it down,2,7,1.2,55
+Take it down,3,6,1.4,50
+Take it down,4,5,1.5,45
+Take it down,5,4,1.7,40
+Blade storm,1,16,1.5,70
+Blade storm,2,14,1.7,62
+Blade storm,3,12,2.0,55
+Blade storm,4,11,2.2,47
+Blade storm,5,10,2.5,40
+Finish Attack,1,30,2.5,200
+Finish Attack,2,25,3.5,175
+Finish Attack,3,20,5.0,150
+
+

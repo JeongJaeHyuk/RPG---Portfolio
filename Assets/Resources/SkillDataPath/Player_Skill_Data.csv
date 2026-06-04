@@ -1,0 +1,6 @@
+name,icon,description,currentLevel,maxLevel,coolTime,skillType
+rolling,icon,description,0,0,5,Active
+bottom cutting,icon,description,0,0,5,Active
+Take it down,icon,description,0,0,5,Active
+Blade storm,icon,description,0,0,5,Active
+Finish Attack,icon,description,0,0,5,Active
