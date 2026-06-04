@@ -138,7 +138,7 @@ public class Skill_Data_Manager : MonoBehaviour
             list.Add(new Skill_Database
             {
                 skill_Id = builder.skill_Id,
-                skill_Icon = ResourcesLoadManager.rcManager.GetRcSkillIcon(builder.skill_Id),
+                skill_Icon = ResourcesLoadManager.Instance.GetRcSkillIcon(builder.skill_Id),
                 skill_CoolTime = builder.coolTimes.ToArray(),
                 maxLevel = builder.coolTimes.Count,
                 skill_Damage = builder.damages.ToArray(),

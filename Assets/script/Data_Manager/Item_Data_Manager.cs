@@ -53,7 +53,7 @@ public class Item_Data_Manager : MonoBehaviour
                         itemId = itemId,
                         itemName = itemName,
                         itemTypeName = itemTypeName,
-                        itemIcon = ResourcesLoadManager.rcManager.GetRcItemIcon(itemIconName),
+                        itemIcon = ResourcesLoadManager.Instance.GetRcItemIcon(itemIconName),
                         description = description,
                         type = itemType,
                         armorType = armorType,

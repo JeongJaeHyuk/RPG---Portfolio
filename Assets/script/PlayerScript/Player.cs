@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     {
         if (isAttack)
             return;
-        if (Shop_Manager.shopManager.isShopOpen)
+        if (Shop_Manager.Instance.isShopOpen)
             return;
         if (Input.GetMouseButtonDown(1))
         {

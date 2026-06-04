@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Skill_Manager : MonoBehaviour
 {
-    public static Skill_Manager Instance { get; private set; }
+    public static Skill_Manager Instance { get; private set; } = null;
 
     [SerializeField] private List<Skill> skills;
     [SerializeField] private Skill_Data_Manager skillDataManager;

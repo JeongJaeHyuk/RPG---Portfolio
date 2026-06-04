@@ -215,7 +215,7 @@ public class Monster_Attack_Hit : MonoBehaviour
             StartCoroutine("Die");
             SensorOff();
             _pps.CURRENT_EXP += monsterStats.MONSTER_EXP;  // 경험치 추가
-            CoinManager.coinManager.DropCoin(gameObject, coin);  // 코인 드롭
+            CoinManager.Instance.DropCoin(gameObject, coin);  // 코인 드롭
             string monsName = gameObject.name.Split('_')[0]; // _ 뒤에 다 잘라버리기
             DropData drop = DropTable_Manager.instance.GetDropItem(monsName);   // 이름에 맞는 DropData가 존재하는지 확인후 리턴
             // 드랍이 확률로 드랍하는거라 없을경우도 있기떄문에 drop이 null아닐떄 아이템전리품 사용

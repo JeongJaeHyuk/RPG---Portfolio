@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item_Manager : MonoBehaviour
 {
-    public static Item_Manager itemManager;
+    public static Item_Manager Instance { get; private set; } = null;
     [SerializeField] Item_Data_Manager itemDB;
     [SerializeField] List<Item> itemList;
 
@@ -17,13 +17,13 @@ public class Item_Manager : MonoBehaviour
 
     private void Awake()
     {
-        if(itemManager != null)
+        if(Instance != null)
         {
             Destroy(gameObject); // 중복생성방지
         }
         else
         {
-            itemManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject); // 씬 전환시 유지
         }
         LoadAndCategoryItems();

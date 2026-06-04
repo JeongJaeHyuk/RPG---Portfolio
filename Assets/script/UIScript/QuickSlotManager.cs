@@ -5,19 +5,19 @@ using UnityEngine;
 // 퀵슬롯 키 입력 관리 매니저 (싱글톤)
 public class QuickSlotManager : MonoBehaviour
 {
-    public static QuickSlotManager instance = null;
+    public static QuickSlotManager Instance { get; private set; } = null;
 
     [SerializeField] Qick_Slot[] quickSlots; // 4개의 퀵슬롯 배열
 
     void Awake()
     {
-        if(instance != null)
+        if(Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 

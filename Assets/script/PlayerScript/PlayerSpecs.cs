@@ -86,9 +86,17 @@ public class PlayerSpecs : MonoBehaviour
     }
     #region 체력 프로퍼티
     // 체력
-    float maxHp = 100f;
-    public float MAX_HP => maxHp;
-    float currentHp = 100f;
+    float maxHp = 0f;
+    public float MAX_HP
+    {
+        get => maxHp;
+        set
+        {
+            maxHp = value;
+            HpChage?.Invoke(currentHp / maxHp);
+        }
+    }
+    float currentHp = 0f;
     public float CURRENT_HP
     {
         get => currentHp;
@@ -102,8 +110,8 @@ public class PlayerSpecs : MonoBehaviour
     #endregion
     #region 마나 프로퍼티
     // 설명은 위와 동일 (마나)
-    float maxMp = 100f;
-    float currentMp = 100f;
+    float maxMp = 0f;
+    float currentMp = 0f;
     public float CURRENT_MP
     {
         get => currentMp;
@@ -113,7 +121,15 @@ public class PlayerSpecs : MonoBehaviour
             MpChage?.Invoke(currentMp / maxMp);
         }
     }
-    public float MAX_MP => maxMp;
+    public float MAX_MP
+    {
+        get => maxMp;
+        set
+        {
+            maxMp = value;
+            MpChage?.Invoke(currentMp / maxMp);
+        }
+    }
     #endregion
     //PlayerDataManager에서 불러오고 저장하는 코드 사용할꺼라 싱글톤으로 사용하지말고 각자 Player오브젝트에 가지고있기
     private void Awake()
@@ -135,10 +151,7 @@ public class PlayerSpecs : MonoBehaviour
     // 장비 장착했을때 변수 변동되는 함수 사용하기.
     void Start()
     {
-        CURRENT_HP = maxHp;
-        CURRENT_MP = maxMp;
-        BASICDAMAGE = 30f;
-        BASICDEFENSE = 40f;
+        // LoadGame()에서 CSV 기본값을 읽어서 대입할 예정
     }
     //테이블로 받아와서 입력하는 함수
     public void SetStatas(float _curHP,float _maxHP,float _curMP,float _maxMP,float _curEXP,float _maxEXP)

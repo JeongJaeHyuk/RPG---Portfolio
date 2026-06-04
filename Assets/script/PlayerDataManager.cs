@@ -51,10 +51,6 @@ public class PlayerDataManager : MonoBehaviour
     // GameScene에서 이 변수를 읽어서 어떤 파일을 로드할지 결정합니다.
     public static string CurrentSaveName { get; private set; }
 
-    // 새로만들기(true) 인지 불러오기(false) 인지 구분하는 플래그
-    // GameScene의 초기화 코드에서 이 값을 보고 데이터 적용 여부를 결정합니다.
-    public static bool IsNewGame { get; private set; }
-
     // ------------------------------------------------------------------
     // 저장 폴더가 없으면 자동 생성
     // ------------------------------------------------------------------
@@ -88,17 +84,17 @@ public class PlayerDataManager : MonoBehaviour
     // 모든 세이브 슬롯 목록을 최신 저장 순으로 반환
     // StartMenu [불러오기] 패널에서 슬롯 목록을 표시할 때 사용합니다.
     // ------------------------------------------------------------------
-    public static List<SaveSlotData> GetAllSaves()
+    public static List<SaveData> GetAllSaves()
     {
         EnsureSaveFolder();
-        List<SaveSlotData> list = new List<SaveSlotData>();
+        List<SaveData> list = new List<SaveData>();
 
         // saves/ 폴더 안의 모든 .sav 파일을 순회
         string[] files = Directory.GetFiles(SaveFolder, "*.sav");
         foreach (string file in files)
         {
-            // 암호화된 파일을 읽고 복호화 → JSON 문자열 → SaveSlotData 객체로 변환
-            SaveSlotData data = ReadSaveFile(file);
+            // 암호화된 파일을 읽고 복호화 → JSON 문자열 → SaveData 객체로 변환
+            SaveData data = ReadSaveFile(file);
             if (data != null)
                 list.Add(data);
         }
@@ -119,19 +115,14 @@ public class PlayerDataManager : MonoBehaviour
         if (SaveExists(saveName))
             return false; // 이름 중복
 
-        // 새 세이브 데이터 초기값 설정
-        SaveSlotData data = new SaveSlotData
-        {
-            saveName    = saveName,
-            saveDate    = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            playerLevel = 1,
-            // 나머지 게임 데이터는 기본값(0, null 등)으로 초기화됨
-        };
+        // PlayerLoadCSV에서 CSV 기본값을 읽어서 SaveData에 채움
+        SaveData data = PlayerLoadCSV.Instance.LoadDefaultSpec();
+        data.saveName = saveName;
+        data.saveDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
         WriteSaveFile(saveName, data); // 암호화해서 파일로 저장
 
         CurrentSaveName = saveName;
-        IsNewGame = true; // GameScene에서 데이터 로드를 건너뛰도록 표시
         return true;
     }
 
@@ -142,7 +133,6 @@ public class PlayerDataManager : MonoBehaviour
     public static void SelectSave(string saveName)
     {
         CurrentSaveName = saveName;
-        IsNewGame = false; // GameScene에서 데이터를 로드하도록 표시
     }
 
     // ------------------------------------------------------------------
@@ -150,7 +140,7 @@ public class PlayerDataManager : MonoBehaviour
     // ------------------------------------------------------------------
     // 호출 전에 반드시 각 스크립트(PlayerSpecs, PlayerProgression 등)에서
     // 최신 값을 data에 채워넣어야 합니다.
-    public static void SaveGame(SaveSlotData data)
+    public static void SaveGame(SaveData data)
     {
         if (string.IsNullOrEmpty(CurrentSaveName))
         {
@@ -169,9 +159,9 @@ public class PlayerDataManager : MonoBehaviour
     // ------------------------------------------------------------------
     // 세이브 파일을 읽어서 게임 데이터를 반환 (GameScene 로드 후 호출)
     // ------------------------------------------------------------------
-    // 반환된 SaveSlotData를 각 스크립트에 적용하는 것은 호출한 쪽에서 처리합니다.
+    // 반환된 SaveData를 각 스크립트에 적용하는 것은 호출한 쪽에서 처리합니다.
     // (PlayerSpecs, PlayerProgression, UI_Inventory 등에 값을 넣어주는 코드 필요)
-    public static SaveSlotData LoadGame()
+    public static SaveData LoadGame()
     {
         if (string.IsNullOrEmpty(CurrentSaveName))
         {
@@ -179,7 +169,7 @@ public class PlayerDataManager : MonoBehaviour
             return null;
         }
 
-        SaveSlotData data = ReadSaveFile(SavePath(CurrentSaveName));
+        SaveData data = ReadSaveFile(SavePath(CurrentSaveName));
         if (data == null)
         {
             Debug.LogError($"세이브 파일을 읽을 수 없습니다: {CurrentSaveName}");
@@ -207,17 +197,17 @@ public class PlayerDataManager : MonoBehaviour
     // 내부 파일 읽기/쓰기 함수 (암호화 포함)
     // ==================================================================
 
-    // SaveSlotData → JSON 문자열 → AES 암호화 → .sav 파일 저장
-    static void WriteSaveFile(string saveName, SaveSlotData data)
+    // SaveData → JSON 문자열 → AES 암호화 → .sav 파일 저장
+    static void WriteSaveFile(string saveName, SaveData data)
     {
         string json = JsonUtility.ToJson(data); // 클래스를 JSON 문자열로 변환
         byte[] encrypted = Encrypt(json);       // JSON 문자열을 AES로 암호화
         File.WriteAllBytes(SavePath(saveName), encrypted); // 암호화된 바이트를 파일로 저장
     }
 
-    // .sav 파일 → AES 복호화 → JSON 문자열 → SaveSlotData 반환
+    // .sav 파일 → AES 복호화 → JSON 문자열 → SaveData 반환
     // 파일이 없거나 복호화 실패 시 null 반환
-    static SaveSlotData ReadSaveFile(string filePath)
+    static SaveData ReadSaveFile(string filePath)
     {
         if (!File.Exists(filePath))
             return null;
@@ -226,7 +216,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             byte[] encrypted = File.ReadAllBytes(filePath); // 파일에서 암호화된 바이트 읽기
             string json = Decrypt(encrypted);               // AES 복호화 → JSON 문자열
-            return JsonUtility.FromJson<SaveSlotData>(json);// JSON → SaveSlotData 객체
+            return JsonUtility.FromJson<SaveData>(json);// JSON → SaveData 객체
         }
         catch (Exception e)
         {

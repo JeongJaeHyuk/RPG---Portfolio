@@ -8,7 +8,7 @@ public class EquipNPC : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Shop_Manager.shopManager.IsSetNpc(Shop_Manager.NPCType.Equip, true);
+            Shop_Manager.Instance.IsSetNpc(Shop_Manager.NPCType.Equip, true);
         }
     }
 
@@ -16,7 +16,7 @@ public class EquipNPC : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Shop_Manager.shopManager.IsSetNpc(Shop_Manager.NPCType.Equip, false);
+            Shop_Manager.Instance.IsSetNpc(Shop_Manager.NPCType.Equip, false);
         }
     }
 }

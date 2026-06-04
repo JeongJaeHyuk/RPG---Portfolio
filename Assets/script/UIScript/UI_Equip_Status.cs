@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Equip_Status : MonoBehaviour
 {
     // 여기가 장비 장착 관련 스크립트
-    public static UI_Equip_Status instance = null;
+    public static UI_Equip_Status Instance { get; private set; } = null;
 
     [SerializeField] PlayerSpecs plsp;          // 플레이어 스펙 스크립트
 
@@ -16,9 +16,9 @@ public class UI_Equip_Status : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -38,7 +38,7 @@ public class UI_Equip_Status : MonoBehaviour
         plsp.WAPONDAMAGE = 0f;
         plsp.WAPONDAMAGE = _item.attackPower;   // 이건 값타입이라 밑에 Remove해도 문제없음
         // 3. 플레이어 무기 오브젝트 교체
-        PlayerWeaponManager.instance.ChangeWeapon(_item.itemIcon.name);
+        PlayerWeaponManager.Instance.ChangeWeapon(_item.itemIcon.name);
         // 4. 인벤토리에서 해당 아이템 제거 (UI_Inventory.inven.RemoveItem)
         UI_Inventory.inven.RemoveItem(_item);
     }
@@ -88,7 +88,7 @@ public class UI_Equip_Status : MonoBehaviour
             //    - PlayerSpecs의 무기 공격력 초기화 (0으로)
             plsp.WAPONDAMAGE = 0f;
             //    - 플레이어 무기를 기본 무기로 변경
-            PlayerWeaponManager.instance.ResetToDefaultWeapon();
+            PlayerWeaponManager.Instance.ResetToDefaultWeapon();
         }
     }
 

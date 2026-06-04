@@ -11,7 +11,7 @@ public class Consume_Shop : BaseShop
     [Header("Shop Slots (4개 미리 배치)")]
     [SerializeField] ShopSlot[] shopSlots;  // Inspector에서 4개 연결
 
-    List<Item> shopConsumeList => Item_Manager.itemManager.GetConsumeList();    // 상점 정보 불러올 변수
+    List<Item> shopConsumeList => Item_Manager.Instance.GetConsumeList();    // 상점 정보 불러올 변수
 
     protected override void LoadShopItems()
     {

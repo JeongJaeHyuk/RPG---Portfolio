@@ -26,7 +26,7 @@ public class UI_SaveSlot : MonoBehaviour
     [SerializeField] Button deleteButton;   // 클릭하면 이 세이브 파일 삭제
 
     // 이 슬롯이 표시하는 세이브 데이터
-    SaveSlotData data;
+    SaveData data;
     // 버튼 이벤트를 실제로 처리할 StartMenu 참조
     StartMenu startMenu;
 
@@ -35,7 +35,7 @@ public class UI_SaveSlot : MonoBehaviour
     // _data    : 이 슬롯에 표시할 세이브 파일 정보
     // _startMenu : 버튼 클릭 시 실행할 함수가 있는 StartMenu 참조
     // ------------------------------------------------------------------
-    public void Setup(SaveSlotData _data, StartMenu _startMenu)
+    public void Setup(SaveData _data, StartMenu _startMenu)
     {
         data      = _data;
         startMenu = _startMenu;

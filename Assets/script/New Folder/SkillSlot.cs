@@ -66,7 +66,7 @@ public class SkillSlot : MonoBehaviour
     {
         // 조건문으로 스킬포인트가 1이상있을때 
         // 스킬포인트 카운트 하나 빼기
-        if (uiSkill.PlayerProg().SPLEVELUP > 0)
+        if (uiSkill.PlayerProg().SKILL_POINT > 0)
         {
             skill.CURRENT_LEVEL++;
             uiSkill.PlayerProg().UseSkillPoint();
@@ -75,7 +75,7 @@ public class SkillSlot : MonoBehaviour
                 uiSkill.NameSkillLock(skill.skillName);
             }
         }
-        else if (uiSkill.PlayerProg().SPLEVELUP < 0)
+        else if (uiSkill.PlayerProg().SKILL_POINT < 0)
         {
             Debug.Log("스킬포인트가 부족합니다");
         }

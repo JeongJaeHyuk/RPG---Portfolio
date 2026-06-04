@@ -24,7 +24,7 @@ public class Equip_Slot : MonoBehaviour, IPointerClickHandler
         {
             ToolTip.instance.Hide();
             // 장착된 아이템이므로 isEquipped = true 전달
-            ToolTip_Fun.instance.Show(currentEquipItem, itemIcon.transform.parent.GetComponent<RectTransform>(), true);
+            ToolTip_Fun.Instance.Show(currentEquipItem, itemIcon.transform.parent.GetComponent<RectTransform>(), true);
         }
     }
 

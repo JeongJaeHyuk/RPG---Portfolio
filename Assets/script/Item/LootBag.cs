@@ -12,7 +12,7 @@ public class LootBag : MonoBehaviour
     {
         // TODO: Item_Manager에서 itemId로 아이템 찾기
         // Item_Manager에서 드랍할 아이템 id값을 비교해서 맞는아이템을 찾기
-        Item originalItem = Item_Manager.itemManager.GetMaterialItem(dropData.itemId);
+        Item originalItem = Item_Manager.Instance.GetMaterialItem(dropData.itemId);
         // 찾지못했을 경우
         if(originalItem == null)
         {

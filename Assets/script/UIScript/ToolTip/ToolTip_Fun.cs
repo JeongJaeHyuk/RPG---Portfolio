@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ToolTip_Fun : MonoBehaviour
 {
-    public static ToolTip_Fun instance = null;
+    public static ToolTip_Fun Instance { get; private set; } = null;
     [SerializeField] GameObject uesGameObject;      // 사용하기 또는 장착하기 오브젝트
     [SerializeField] Text useText;                  // 사용하기 또는 장착하기 텍스트
     [SerializeField] GameObject blocker;            // 아무 화면 클릭시 처리에 필요한 오브젝트
@@ -18,13 +18,13 @@ public class ToolTip_Fun : MonoBehaviour
 
     public void Awake()
     {
-        if(instance != null)
+        if(Instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             gameObject.SetActive(false);
         }
     }
@@ -82,21 +82,21 @@ public class ToolTip_Fun : MonoBehaviour
                 case ItemType.Weapon:
                     if(isEquippedItem)
                     {
-                        UI_Equip_Status.instance.UnEquipWeapon();
+                        UI_Equip_Status.Instance.UnEquipWeapon();
                     }
                     else
                     {
-                        UI_Equip_Status.instance.EquipWeapon(tagetItem);
+                        UI_Equip_Status.Instance.EquipWeapon(tagetItem);
                     }
                     break;
                 case ItemType.Armor:
                     if(isEquippedItem)
                     {
-                        UI_Equip_Status.instance.UnEquipArmor(tagetItem);
+                        UI_Equip_Status.Instance.UnEquipArmor(tagetItem);
                     }
                     else
                     {
-                        UI_Equip_Status.instance.EquipArmor(tagetItem);
+                        UI_Equip_Status.Instance.EquipArmor(tagetItem);
                     }
                     break;
                 case ItemType.Consumable:

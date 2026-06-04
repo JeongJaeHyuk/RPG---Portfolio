@@ -1,0 +1,2 @@
+level,maxLevel,maxHp,currentHp,maxMp,currentMp,basicDamage,basicDefense,maxExp,currentExp,skillPoint
+1,50,100,100,50,50,30,40,30,0,0

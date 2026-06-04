@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 // =====================================================================
-// SaveSlotData : 세이브 파일 하나에 저장되는 모든 데이터를 담는 클래스
+// SaveData : 세이브 파일 하나에 저장되는 모든 데이터를 담는 클래스
 // =====================================================================
 // [직렬화(Serialization)란?]
 // C# 클래스(메모리 안의 데이터)를 파일로 저장하려면 "텍스트 or 바이트"로
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 // [Serializable] 어트리뷰트가 없으면 JsonUtility가 변환을 거부합니다.
 // =====================================================================
 [Serializable]
-public class SaveSlotData
+public class SaveData
 {
     // ------------------------------------------------------------------
     // 슬롯 목록 화면에 표시되는 미리보기 정보
@@ -20,6 +20,7 @@ public class SaveSlotData
     public string saveName;     // 플레이어가 직접 입력한 세이브 이름 (파일 이름으로도 사용)
     public string saveDate;     // 마지막 저장 시각 (yyyy-MM-dd HH:mm:ss 형식)
     public int playerLevel;     // 저장 시점의 플레이어 레벨 (목록에 Lv.5 형태로 표시용)
+    public int maxLevel;        // 최대 레벨
 
     // ------------------------------------------------------------------
     // 실제 플레이어 진행 데이터

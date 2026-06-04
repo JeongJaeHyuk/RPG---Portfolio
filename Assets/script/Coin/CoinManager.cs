@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinManager : MonoBehaviour
 {
     // 싱글톤 버전으로 몬스터가 죽엇을 때 몬스터 스크립트에서 자기 좌표를 주고 코인오브젝트를 보내주는형식으로
-    public static CoinManager coinManager = null;
+    public static CoinManager Instance { get; private set; } = null;
     public Dictionary<string, Queue<GameObject>> coinQueues;
     const int constCopperMax = 500;
     const int constSilverMax = 1000;
@@ -13,9 +13,9 @@ public class CoinManager : MonoBehaviour
 
     void Awake()
     {
-        if(coinManager == null)
+        if(Instance == null)
         {
-            coinManager = this;
+            Instance = this;
             InitializeQueues();
         } 
         else
@@ -46,7 +46,7 @@ public class CoinManager : MonoBehaviour
         {
             Transform parentTrans = transform.GetChild(i);
             string coinType = parentTrans.name;
-            GameObject prefab = ResourcesLoadManager.rcManager.GetrcCoin(coinType);
+            GameObject prefab = ResourcesLoadManager.Instance.GetrcCoin(coinType);
             for(int j = 0; j < 20; j++)
             {
                 GameObject obj = GameObject.Instantiate<GameObject>(prefab);

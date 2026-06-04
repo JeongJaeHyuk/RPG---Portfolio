@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourcesLoadManager : MonoBehaviour
 {
     #region 싱글톤
-    public static ResourcesLoadManager rcManager;
+    public static ResourcesLoadManager Instance { get; private set; } = null;
     #endregion
 
     #region 몬스터 관련
@@ -142,9 +142,9 @@ public class ResourcesLoadManager : MonoBehaviour
     private void Awake()
     {
         // 싱글톤 체크 - 중복 인스턴스 방지
-        if (rcManager == null)
+        if (Instance == null)
         {
-            rcManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject); // 씬 전환 시 파괴되지 않음
 
             // 리소스 로드

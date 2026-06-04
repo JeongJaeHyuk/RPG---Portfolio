@@ -41,7 +41,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(eventData.button == PointerEventData.InputButton.Right)
         {
             ToolTip.instance.Hide();
-            ToolTip_Fun.instance.Show(currentItem, itemIcon.transform.parent.GetComponent<RectTransform>());
+            ToolTip_Fun.Instance.Show(currentItem, itemIcon.transform.parent.GetComponent<RectTransform>());
         }
     }
     #endregion

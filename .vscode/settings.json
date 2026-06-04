@@ -51,5 +51,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Project_T.slnx"
+    "dotnet.defaultSolution": "Project_T.slnx",
+    "[csharp]": {
+        "editor.semanticHighlighting.enabled": false
+    }
 }

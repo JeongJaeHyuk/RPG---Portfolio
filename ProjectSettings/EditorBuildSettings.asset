@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: d4c660e3690d4a74c9007ee2d2efd5d9
   - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 68533c0fa8138a44dac0394c079b5585
+  - enabled: 1
     path: Assets/Scenes/TownScene.unity
     guid: 375df50314ab83e439518024fdb679d0
+  - enabled: 1
+    path: Assets/Scenes/OrcFieldScene.unity
+    guid: 2196fc45d99ce1d4cb0b72c9f5b3fb55
+  - enabled: 1
+    path: Assets/Scenes/RaidScene.unity
+    guid: 6077d2aeffc1b9f40982534a14140685
   m_configObjects: {}

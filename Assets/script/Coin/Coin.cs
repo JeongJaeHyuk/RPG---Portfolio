@@ -22,9 +22,9 @@ public class Coin : MonoBehaviour
     void OnDisable()
     {
         gold = 0;
-        if (CoinManager.coinManager.coinQueues.ContainsKey(coinType))
+        if (CoinManager.Instance.coinQueues.ContainsKey(coinType))
         {
-            CoinManager.coinManager.coinQueues[coinType].Enqueue(gameObject);
+            CoinManager.Instance.coinQueues[coinType].Enqueue(gameObject);
         }
         gameObject.transform.position = oriPos;
         if(despawnCoroutine != null)

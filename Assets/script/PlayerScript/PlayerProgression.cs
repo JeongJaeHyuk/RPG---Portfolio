@@ -13,7 +13,7 @@ public class PlayerProgression : MonoBehaviour
     float spLev;
 
     // 프로퍼티
-    public float SPLEVELUP
+    public float SKILL_POINT
     {
         get => spLev;
         set
@@ -28,7 +28,7 @@ public class PlayerProgression : MonoBehaviour
     {
         if (spLev > 0)
         {
-            SPLEVELUP--; // 이벤트 호출 포함
+            SKILL_POINT--; // 이벤트 호출 포함
             return true; // 사용 성공
         }
         else
@@ -39,14 +39,13 @@ public class PlayerProgression : MonoBehaviour
     }
     public void AddSkillPoint()
     {
-        SPLEVELUP++;
+        SKILL_POINT++;
     }
     #endregion
     #region 경험치및 레벨업 프로퍼티 및 함수
     // 설명은 위와 동일 (경험치)
     float maxExp = 0f;
     float currentExp = 0f;
-    float remainingExp;
 
     public float CURRENT_EXP
     {
@@ -60,7 +59,6 @@ public class PlayerProgression : MonoBehaviour
                 Debug.Log("currentExp경험치 초과로 if들어옴");
                 LevelUp();
             }
-            remainingExp = 0f;
         }
     }
     public float MAX_EXP
@@ -113,11 +111,8 @@ public class PlayerProgression : MonoBehaviour
     // 장비 장착했을때 변수 변동되는 함수 사용하기.
     void Start()
     {
-        // 임시로 선언해둔것 무조건 max가 먼저 선언되어야함 인보크함수떄매 어쩔수없음
-        MAX_EXP = 30f;
-        MAX_LEVEL = 50f;
-        CURRENT_EXP = 10f;
-        CURRENT_LEVEL = 1f;
+        // LoadGame()에서 CSV 기본값을 읽어서 대입할 예정
+        // 주의 : MAX_EXP, MAX_LEVEL을 반드시 먼저 대입한 뒤 CURRENT_EXP, CURRENT_LEVEL 대입해야 함 (Invoke 때문)
     }
 
 }

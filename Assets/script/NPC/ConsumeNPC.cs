@@ -8,7 +8,7 @@ public class ConsumeNPC : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Shop_Manager.shopManager.IsSetNpc(Shop_Manager.NPCType.Consume, true);
+            Shop_Manager.Instance.IsSetNpc(Shop_Manager.NPCType.Consume, true);
         }
     }
 
@@ -16,7 +16,7 @@ public class ConsumeNPC : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Shop_Manager.shopManager.IsSetNpc(Shop_Manager.NPCType.Consume, false);
+            Shop_Manager.Instance.IsSetNpc(Shop_Manager.NPCType.Consume, false);
         }
     }
 }

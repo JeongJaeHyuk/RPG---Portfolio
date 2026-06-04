@@ -38,10 +38,6 @@ public class StartMenu : MonoBehaviour
     [SerializeField] Transform slotParent;          // 슬롯들이 들어갈 부모 (ScrollView의 Content)
     [SerializeField] GameObject saveSlotPrefab;     // UI_SaveSlot 프리팹 (슬롯 1개 단위 UI)
 
-    [Header("── 씬 설정 ──────────────────")]
-    [Tooltip("Build Settings에 등록된 게임씬 이름과 정확히 일치해야 합니다")]
-    [SerializeField] string gameSceneName = "TownScene";
-
     void Start()
     {
         // 시작 시 팝업 패널은 모두 닫아둡니다
@@ -109,11 +105,9 @@ public class StartMenu : MonoBehaviour
             return;
         }
 
-        // 세이브 파일 생성 성공 시 게임씬으로 이동
-        // PlayerDataManager.IsNewGame = true 로 설정되어
-        // GameScene에서 데이터 로드를 건너뛰고 새 게임으로 시작합니다
+        // 세이브 파일 생성 후 게임씬으로 이동
         PlayerDataManager.CreateSave(name);
-        SceneManager.LoadScene(gameSceneName);
+        LoadingData.LoadScene(SceneName.TownScene);
     }
 
     // [취소] 버튼 OnClick에 연결
@@ -135,10 +129,10 @@ public class StartMenu : MonoBehaviour
             Destroy(child.gameObject);
 
         // PlayerDataManager에서 모든 세이브 파일 정보를 가져옵니다 (최신순 정렬)
-        List<SaveSlotData> saves = PlayerDataManager.GetAllSaves();
+        List<SaveData> saves = PlayerDataManager.GetAllSaves();
 
         // 세이브 파일 개수만큼 슬롯 UI를 생성하고 데이터를 넣어줍니다
-        foreach (SaveSlotData save in saves)
+        foreach (SaveData save in saves)
         {
             // saveSlotPrefab(UI_SaveSlot)을 slotParent 아래에 복제 생성
             GameObject obj = Instantiate(saveSlotPrefab, slotParent);
@@ -152,11 +146,10 @@ public class StartMenu : MonoBehaviour
 
     // UI_SaveSlot의 [선택] 버튼에서 호출
     // 선택한 세이브를 현재 세이브로 설정하고 게임씬으로 이동합니다
-    // GameScene에서 PlayerDataManager.IsNewGame == false 이면 LoadGame()을 호출해야 합니다
     public void SelectSaveAndLoad(string saveName)
     {
         PlayerDataManager.SelectSave(saveName);
-        SceneManager.LoadScene(gameSceneName);
+        // LoadingData.LoadScene(gameSceneName); 나중에 사용할꺼라 일단 주석처리 코드좀 고쳐야함
     }
 
     // UI_SaveSlot의 [삭제] 버튼에서 호출

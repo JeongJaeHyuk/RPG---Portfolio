@@ -99,7 +99,7 @@ public class UI_Skill : MonoBehaviour
     // 스킬 포인트 정보 텍스트에 뿌리기
     void skillPointText(float _value)
     {
-       skillText.text = pps.SPLEVELUP.ToString();
+       skillText.text = pps.SKILL_POINT.ToString();
     }
     // 스킬 아이콘 오브젝트 알려주는 코드
     void GetSkillIcon()

@@ -9,7 +9,7 @@ public class Shop_Manager : MonoBehaviour
         Consume,
         Equip
     }
-    public static Shop_Manager shopManager = null;
+    public static Shop_Manager Instance { get; private set; } = null;
     [SerializeField] GameObject consumeTab; // 소비상점UI
     [SerializeField] GameObject equipTab;   // 장비상점UI
     public bool isConsumeNPC = false;   // 소비상인npc가 근처에 있는가 여부체크
@@ -17,9 +17,9 @@ public class Shop_Manager : MonoBehaviour
     public bool isShopOpen => consumeTab.activeSelf || equipTab.activeSelf;
     void Awake()
     {
-        if(shopManager == null)
+        if(Instance == null)
         {
-            shopManager = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeaponManager : MonoBehaviour
 {
-    public static PlayerWeaponManager instance = null;
+    public static PlayerWeaponManager Instance { get; private set; } = null;
 
     [Header("플레이어 무기 오브젝트들")]
     [SerializeField] GameObject defaultWeapon;          // 기본 무기 (장착 해제 시)
@@ -14,9 +14,9 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

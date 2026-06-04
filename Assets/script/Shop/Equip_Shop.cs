@@ -15,7 +15,7 @@ public class Equip_Shop : BaseShop
     [Header("게임 시작 이후 사용할 변수들")]
     [SerializeField] List<ShopSlot> shopSlots;
 
-    List<Item> shopEquipList => Item_Manager.itemManager.GetEquipList();
+    List<Item> shopEquipList => Item_Manager.Instance.GetEquipList();
 
     /// <summary>
     /// 장비 아이템 데이터 로드 및 슬롯 동적 생성
