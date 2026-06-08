@@ -44,7 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c153748048776449802a711c3e1aa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster1: {fileID: 0}
-  monster2: {fileID: 0}
+  rockGolem: {fileID: 0}
+  greenOrc: {fileID: 0}
+  blueOrc: {fileID: 0}
+  redOrc: {fileID: 0}
   monster3: {fileID: 0}
   boss: {fileID: 0}
+  skillIcon_1: {fileID: 0}
+  skillIcon_2: {fileID: 0}
+  skillIcon_3: {fileID: 0}
+  skillIcon_4: {fileID: 0}
+  skillIcon_5: {fileID: 0}
+  copperCoin: {fileID: 0}
+  silverCoin: {fileID: 0}
+  goldCoin: {fileID: 0}

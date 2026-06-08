@@ -1899,6 +1899,8 @@ GameObject:
   - component: {fileID: 316624799}
   - component: {fileID: 316624804}
   - component: {fileID: 1058080547}
+  - component: {fileID: 1796916448}
+  - component: {fileID: -8496469501002805651}
   m_Layer: 6
   m_Name: knight
   m_TagString: Player
@@ -1987,7 +1989,6 @@ MonoBehaviour:
   nav: {fileID: 0}
   end: {x: 0, y: 0, z: 0}
   isRoll: 0
-  isUI: 0
   effect: {fileID: 7246696990927492112}
   basicAttackEf: []
   finalEf:
@@ -2010,6 +2011,17 @@ MonoBehaviour:
   layerlayer:
     serializedVersion: 2
     m_Bits: 512
+  skillCool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isSkill_LShift: 1
+  isSkill_Q: 1
+  isSkill_W: 1
+  isSkill_E: 1
+  isSkill_R: 1
 --- !u!136 &316624799
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2052,7 +2064,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982c48642125493408a0582d72369b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalDamage: 0
+  pps: {fileID: 0}
+--- !u!114 &1796916448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812891832722199278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d658649f308ff4283bcfaf4221def7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8496469501002805651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8812891832722199278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d472e6ba74b604db4fd378397a6c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultWeapon: {fileID: 8255401492058931073}
+  weaponObjects:
+  - {fileID: 8255401493487353531}
+  - {fileID: 8255401492111534112}
+  - {fileID: 8255401492391978955}
+  - {fileID: 8255401493577178771}
+  - {fileID: 8255401492058931073}
 --- !u!1 &8812891832722199280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,7 +4011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100008, guid: 8c9e0fda7d25d934db87cb27a5d01c87, type: 3}
       propertyPath: m_Name
-      value: Sword_01
+      value: rusty_sword
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 8c9e0fda7d25d934db87cb27a5d01c87, type: 3}
       propertyPath: m_IsActive
@@ -4085,7 +4128,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: e44537e2fa582734e9c35e7aca876348, type: 3}
       propertyPath: m_Name
-      value: Ang_Sword
+      value: steel_sword
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: e44537e2fa582734e9c35e7aca876348, type: 3}
       propertyPath: m_IsActive
@@ -4163,7 +4206,7 @@ BoxCollider:
   m_GameObject: {fileID: 8255401492111534112}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: -0.8}
@@ -4181,7 +4224,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 1f8228955e502c540990cfb16d3bf826, type: 3}
       propertyPath: m_Name
-      value: Set8_2
+      value: mithril_sword
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1f8228955e502c540990cfb16d3bf826, type: 3}
       propertyPath: m_IsActive
@@ -4245,6 +4288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f8228955e502c540990cfb16d3bf826, type: 3}
+--- !u!1 &8255401492391978955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 1f8228955e502c540990cfb16d3bf826, type: 3}
+  m_PrefabInstance: {fileID: 8255401492392010091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8255401492392410091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1f8228955e502c540990cfb16d3bf826, type: 3}
@@ -4259,7 +4307,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100006, guid: b4ff22880a88b1d4d949ea12b5b50fe0, type: 3}
       propertyPath: m_Name
-      value: Crys_Sword
+      value: ice_sword
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: b4ff22880a88b1d4d949ea12b5b50fe0, type: 3}
       propertyPath: m_IsActive
@@ -4337,7 +4385,7 @@ BoxCollider:
   m_GameObject: {fileID: 8255401493487353531}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: -0.95}
@@ -4355,7 +4403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: a7850231b36504f468a08adb78c26a5f, type: 3}
       propertyPath: m_Name
-      value: Sword_06
+      value: regular_sword
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: a7850231b36504f468a08adb78c26a5f, type: 3}
       propertyPath: m_IsActive

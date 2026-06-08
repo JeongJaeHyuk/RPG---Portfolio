@@ -59,7 +59,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7043007608206941210, guid: f21c0142a9aee5c4b85dfc3c82a7575e, type: 3}
       propertyPath: m_Name
-      value: Monster_1#1%ReSpawn
+      value: RockGolem_ReSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 7043007608206941211, guid: f21c0142a9aee5c4b85dfc3c82a7575e, type: 3}
       propertyPath: m_RootOrder
@@ -121,7 +121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8381479950941788156, guid: 8a6034a182fe9374485d13c0025040e0, type: 3}
       propertyPath: m_Name
-      value: Monster_2#1%ReSpawn
+      value: GreenOrc__ReSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 8729992226833566800, guid: 8a6034a182fe9374485d13c0025040e0, type: 3}
       propertyPath: m_RootOrder
@@ -227,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8933576832438349849, guid: 4470b85b306133a4e80b6fb727096068, type: 3}
       propertyPath: m_Name
-      value: Monster_2#2%ReSpawn
+      value: BlueOrc_ReSpawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4470b85b306133a4e80b6fb727096068, type: 3}
@@ -289,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9211601043160457396, guid: ebc931acea7ea804aa47a68b39e88a43, type: 3}
       propertyPath: m_Name
-      value: Monster_2#3%ReSpawn
+      value: RedOrc_ReSpawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebc931acea7ea804aa47a68b39e88a43, type: 3}

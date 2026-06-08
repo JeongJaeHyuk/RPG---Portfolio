@@ -1,4 +1,4 @@
-                           using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
 
     // 스킬 쿨타임 정보
     [SerializeField]Skill_CoolTime[] skillCool;
+    // 위의 정보를 대입받아야함 드래그엔드랍으로 처리되어있어서 코드로받아야함
     private void Awake()
     {
         // 여기는 컴포넌트할당

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerWeaponManager : MonoBehaviour
@@ -26,7 +27,17 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Start()
     {
-        // 시작 시 기본 무기만 활성화
+        // 기본 무기 활성화는 PlayerRuntimeSetup.SetupWeaponManager()에서 처리
+    }
+
+    // ------------------------------------------------------------------
+    // 플레이어 생성 후 PlayerRuntimeSetup에서 호출
+    // 플레이어 하위의 무기 오브젝트 배열과 기본 무기를 외부에서 전달받아 설정
+    // ------------------------------------------------------------------
+    public void Setup(GameObject _defaultWeapon, GameObject[] _weaponObjects)
+    {
+        defaultWeapon = _defaultWeapon;
+        weaponObjects = _weaponObjects;
         ResetToDefaultWeapon();
     }
 
@@ -83,7 +94,9 @@ public class PlayerWeaponManager : MonoBehaviour
         foreach (var weapon in weaponObjects)
         {
             if (weapon != null)
+            {
                 weapon.SetActive(false);
+            }            
         }
 
         // 기본 무기 활성화
@@ -92,6 +105,9 @@ public class PlayerWeaponManager : MonoBehaviour
             defaultWeapon.SetActive(true);
             currentWeapon = defaultWeapon;
             Debug.Log("기본 무기로 변경");
+        }
+        else
+        {
         }
     }
 

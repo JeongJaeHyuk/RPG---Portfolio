@@ -20,7 +20,6 @@ public class LootBagPool : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

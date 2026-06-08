@@ -24,7 +24,6 @@ public class Item_Manager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환시 유지
         }
         LoadAndCategoryItems();
     }

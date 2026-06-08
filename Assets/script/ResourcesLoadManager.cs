@@ -145,7 +145,6 @@ public class ResourcesLoadManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시 파괴되지 않음
 
             // 리소스 로드
             ResourceLoadMonster(); // 몬스터 리소스 가져오기

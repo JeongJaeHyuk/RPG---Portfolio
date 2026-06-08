@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Skill : MonoBehaviour
 {
     [SerializeField] Player player;
-    [SerializeField] Skill_Manager skillManager; // 인스펙터창에서 드래그 엔 드롭으로 설정 해야함
+    [SerializeField] Skill_Manager skillManager;
     [SerializeField] List<Skill> allSkills = new List<Skill>(); // 스킬 정보들
     [SerializeField] List<Skill_Database> skillDatabases = new List<Skill_Database>();
     [SerializeField] Transform content; // 생성한 스킬슬롯을 가지고있을 위치
@@ -18,7 +18,7 @@ public class UI_Skill : MonoBehaviour
 
     private void Awake()
     {
-        allSkills = skillManager.GetAllSkills(); // csv데이터를 받아 가지고있는 스킬정보를 전부다 allSkills에 대입
+        allSkills = Skill_Manager.Instance.GetAllSkills();// csv데이터를 받아 가지고있는 스킬정보를 전부다 allSkills에 대입
         skillDatabases = Skill_Manager.Instance.GetSkillData();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Transform parentUI = gameObject.transform.root;

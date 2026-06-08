@@ -16,7 +16,6 @@ public class Skill_Manager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시에도 유지
         }
         else
         {

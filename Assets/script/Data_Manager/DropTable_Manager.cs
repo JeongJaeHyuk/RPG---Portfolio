@@ -27,7 +27,6 @@ public class DropTable_Manager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
