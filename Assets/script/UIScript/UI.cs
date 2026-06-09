@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    public static UI instance = null;
+    public static UI Instance { get; private set; } = null;
     [SerializeField] GameObject equip;
     [SerializeField] GameObject skiilBackGround;
     [SerializeField] GameObject inventoryBackGround;
     [SerializeField] GameObject questBackGround;
+    [SerializeField] GameObject bottombar_SkillCoolTime;    // 플레이어 스킬쿨타임 연결시킬 변수
     [SerializeField] Player player = null;
     [SerializeField] PlayerSpecs plsl = null;
     [SerializeField] PlayerProgression pps = null;
@@ -22,14 +23,17 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+    void Start()
+    {
         GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
         if (objPlayer != null)
         {
@@ -41,13 +45,9 @@ public class UI : MonoBehaviour
         else
         {
             Debug.LogError("UI스크립트에서 player가 할당되지않았습니다");
-        }
-       
-    }
-    void Start()
-    {
+        }    
         equip.gameObject.SetActive(false);
-        StartCoroutine(RefreshSkill());
+        //StartCoroutine(RefreshSkill());
     }
 
     // Update is called once per frame
@@ -110,6 +110,10 @@ public class UI : MonoBehaviour
     public PlayerProgression GetPlayerProg()
     {
         return pps;
+    }
+    public Skill_CoolTime[] GetSkillCoolTimes()
+    {
+        return bottombar_SkillCoolTime.transform.GetComponentsInChildren<Skill_CoolTime>();
     }
         
 }

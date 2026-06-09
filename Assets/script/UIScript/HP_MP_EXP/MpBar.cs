@@ -8,14 +8,15 @@ public class MpBar : MonoBehaviour
     [SerializeField] UI ui;
     [SerializeField] PlayerSpecs plsp;
     [SerializeField] Image mpbar;
-    private void Awake()
+    void Start()
     {
-        Transform parentUI = gameObject.transform.root;
-        ui = parentUI.GetComponent<UI>();
-        plsp = ui.GetPlayerSpecs();
-        if (ui != null && plsp != null)
+        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (objPlayer != null)
         {
-            plsp.MpChage += UpdateMp; // Hp변경 이벤트 구독
+            plsp = objPlayer.GetComponent<PlayerSpecs>();
+            plsp.MpChage += UpdateMp;
+            if (plsp.MAX_MP > 0)
+                UpdateMp(plsp.CURRENT_MP / plsp.MAX_MP);
         }
     }
 

@@ -8,15 +8,15 @@ public class HpBar : MonoBehaviour
     [SerializeField] UI ui;
     [SerializeField] PlayerSpecs plsp;
     [SerializeField] Image hpbar;
-    private void Awake()
+    void Start()
     {
-        Transform parentUI = gameObject.transform.root;
-        ui = parentUI.GetComponent<UI>();
-        plsp = ui.GetPlayerSpecs();
-        if (ui != null && plsp != null)
+        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (objPlayer != null)
         {
-            // player.HpChage += UpdateHp; // Hp변경 이벤트 구독
+            plsp = objPlayer.GetComponent<PlayerSpecs>();
             plsp.HpChage += UpdateHp;
+            if (plsp.MAX_HP > 0)
+                UpdateHp(plsp.CURRENT_HP / plsp.MAX_HP);
         }
     }
 

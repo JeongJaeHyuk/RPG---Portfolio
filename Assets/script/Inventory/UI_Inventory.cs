@@ -81,7 +81,7 @@ public class UI_Inventory : MonoBehaviour
 
     void OnEnable()
     {
-        UI.instance.isInvenOpen = true;
+        UI.Instance.isInvenOpen = true;
         // 아무 카테고리도 선택 안됐으면 기본값 설정
         if(!isEquip && !isConsume && !isMaterial)
         {
@@ -97,7 +97,7 @@ public class UI_Inventory : MonoBehaviour
     }
     void OnDisable()
     {
-        UI.instance.isInvenOpen = false;
+        UI.Instance.isInvenOpen = false;
         ToolTip.instance.Close();
 
         // 인벤토리 닫힐 때 DropBlocker 비활성화

@@ -9,14 +9,15 @@ public class ExpBar : MonoBehaviour
     [SerializeField] PlayerProgression pps;
     [SerializeField] Image expbar;
     [SerializeField] Text expText;
-    private void Awake()
+    void Start()
     {
-        Transform parentUI = gameObject.transform.root;
-        ui = parentUI.GetComponent<UI>();
-        pps = ui.GetPlayerProg();
-        if (ui != null && pps != null)
+        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (objPlayer != null)
         {
-            pps.ExpChage += UpdateExp; // Hp변경 이벤트 구독
+            pps = objPlayer.GetComponent<PlayerProgression>();
+            pps.ExpChage += UpdateExp;
+            if (pps.MAX_EXP > 0)
+                UpdateExp(pps.CURRENT_EXP / pps.MAX_EXP);
         }
     }
 

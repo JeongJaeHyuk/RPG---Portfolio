@@ -19,8 +19,8 @@ public class SaveData
     // ------------------------------------------------------------------
     public string saveName;     // 플레이어가 직접 입력한 세이브 이름 (파일 이름으로도 사용)
     public string saveDate;     // 마지막 저장 시각 (yyyy-MM-dd HH:mm:ss 형식)
-    public int playerLevel;     // 저장 시점의 플레이어 레벨 (목록에 Lv.5 형태로 표시용)
-    public int maxLevel;        // 최대 레벨
+    public float playerLevel = 0;   // 저장 시점의 플레이어 레벨 (목록에 Lv.5 형태로 표시용)
+    public float maxLevel = 0;      // 최대 레벨
 
     // ------------------------------------------------------------------
     // 실제 플레이어 진행 데이터
@@ -29,26 +29,31 @@ public class SaveData
     // ------------------------------------------------------------------
 
     // 플레이어 위치 (다음 게임 시작 시 이 위치에서 스폰)
-    public float posX;
-    public float posY;
-    public float posZ;
+    public float posX = 0;
+    public float posY = 0;
+    public float posZ = 0;
 
     // 플레이어 스탯 (PlayerSpecs 스크립트와 연동)
-    public float currentHp;
-    public float maxHp;
-    public float currentMp;
-    public float maxMp;
-    public float basicDamage;
-    public float basicDefense;
+    public float currentHp = 0;
+    public float maxHp = 0;
+    public float currentMp = 0;
+    public float maxMp = 0;
+    public float basicDamage = 0;
+    public float basicDefense = 0;
 
     // 플레이어 성장 (PlayerProgression 스크립트와 연동)
-    public float currentExp;
-    public float maxExp;
-    public float currentLevel;
-    public float skillPoint;    // 남은 스킬 포인트
+    public float currentExp = 0;
+    public float maxExp = 0;
+    public float currentLevel = 0;
+    public float skillPoint = 0;    // 남은 스킬 포인트
 
     // 골드 (UI_Inventory 스크립트와 연동)
-    public int gold;
+    public int gold = 0;
+
+    // ------------------------------------------------------------------
+    // 스킬 데이터
+    // ------------------------------------------------------------------
+    public List<SkillSaveData> skills = new List<SkillSaveData>();
 
     // ------------------------------------------------------------------
     // 인벤토리 데이터
@@ -78,7 +83,17 @@ public class ItemSaveData
 {
     public int itemId;          // 아이템 고유 ID (Item_Data_Manager CSV의 itemId와 일치해야 함)
     public int count;           // 보유 개수
-    public string itemCategory; // 인벤토리 분류용 ("Equip" / "Consume" / "Material")
+    public ItemType itemCategory; // 인벤토리 분류용 (ItemType 열거형과 동일)
+}
+
+// =====================================================================
+// SkillSaveData : 스킬 하나의 저장 정보
+// =====================================================================
+[Serializable]
+public class SkillSaveData
+{
+    public string skillName;    // 스킬 이름 (Skill_Manager의 skillName과 일치해야 함)
+    public int currentLevel;    // 현재 스킬 레벨
 }
 
 // =====================================================================

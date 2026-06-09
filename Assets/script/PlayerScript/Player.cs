@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         basicArray();
         spearSensor = GameObject.FindGameObjectWithTag("Spear");
         spearSensor.SetActive(false);
+        Debug.Log("플레이어 소환");
     }
     void Start()
     {
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (UI.instance.IsAnyUIOpen)   // UI 가 켜질 경우 
+        if (UI.Instance.IsAnyUIOpen)   // UI 가 켜질 경우 
             return;
         if (isRoll) // 캐릭터가 구르기를 시전할 경우
             return;
@@ -371,6 +372,9 @@ public class Player : MonoBehaviour
         damageSensor.isTrigger = true;
     }
     #region UI에 전달해주는 정보 함수
-
+    public void SkillCoolSetup(Skill_CoolTime[] _skillCool)
+    {
+        skillCool = _skillCool;
+    }
     #endregion
 }

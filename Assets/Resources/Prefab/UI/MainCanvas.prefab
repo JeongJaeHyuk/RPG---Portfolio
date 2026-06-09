@@ -1062,7 +1062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0.000040524796}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &469262022
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1140537134}
   m_HandleRect: {fileID: 1140537133}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7544,6 +7544,7 @@ MonoBehaviour:
   skiilBackGround: {fileID: 361647377349906055}
   inventoryBackGround: {fileID: 361647377226607343}
   questBackGround: {fileID: 361647376845493451}
+  bottombar_SkillCoolTime: {fileID: 361647377412989617}
   player: {fileID: 0}
   plsl: {fileID: 0}
   pps: {fileID: 0}

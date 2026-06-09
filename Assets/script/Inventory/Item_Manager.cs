@@ -79,4 +79,10 @@ public class Item_Manager : MonoBehaviour
         }
         return null;
     }
+
+    // 모든 타입에서 itemId로 원본 아이템 정보 반환 (세이브 로드 시 사용)
+    public Item GetItemById(int _itemId)
+    {
+        return itemList.Find(x => x.itemId == _itemId);
+    }
 }

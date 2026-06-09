@@ -38,7 +38,7 @@ public abstract class BaseShop : MonoBehaviour
     }
     void OnEnable()
     {
-        UI.instance.isShopOpen = true;
+        UI.Instance.isShopOpen = true;
         UI_Inventory.inven.goldChaged += UpdatePlayerGoldText;
         LoadShopItems();
         EquipButtonClick(); // 상점탭이 열렸을경우 처음에 보이는것은 장비쪽이 먼저 보임
@@ -46,7 +46,7 @@ public abstract class BaseShop : MonoBehaviour
 
     void OnDisable()
     {
-        UI.instance.isShopOpen = false;
+        UI.Instance.isShopOpen = false;
         UI_Inventory.inven.goldChaged -= UpdatePlayerGoldText;
         ClearShopItems();
     }

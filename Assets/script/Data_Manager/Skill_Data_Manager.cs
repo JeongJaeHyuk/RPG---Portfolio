@@ -14,6 +14,7 @@ public class Skill_Data_Manager : MonoBehaviour
         skillDataPath = Application.dataPath + "/" + "Resources" + "/" + "SkillDataPath" + "/" + "SkillAllData.csv";
     }
 
+    // 플레이어 처음생성하거나 로드했을때 디폴트 데이터들 불러오는거 그후에 세이브파일에서 이름과 currentlevel만가져와서 그걸 대입시킬꺼임
     // csv파일을 불러와서 Skill_Data_Manager를 알고 있는곳에서 ex) List<Skill> listSkill = new List<Skill>(); 이후 listSkill = (Skill_Data_Manager)변수.LoadSkillsFromCSV() 사용하면 불러옴
     public List<Skill> LoadSkillsFromCSV() // 테이블에 추가될것들있으면 손써야함
     {
@@ -66,21 +67,21 @@ public class Skill_Data_Manager : MonoBehaviour
     }
 
 
-    // Skills를 CSV로 저장하기 이건 아직 사용안함
-    public void SaveSkillsToCSV(List<Skill> skills)
-    {
-        List<string> lines = new List<string>();
-        lines.Add("skillName,icon,description,currentLevel,maxLevel,cooldown,skillType");
+    // // Skills를 CSV로 저장하기 이건 아직 사용안함
+    // public void SaveSkillsToCSV(List<Skill> skills)
+    // {
+    //     List<string> lines = new List<string>();
+    //     lines.Add("skillName,icon,description,currentLevel,maxLevel,cooldown,skillType");
 
-        foreach (Skill skill in skills)
-        {
-            string line = $"{skill.skillName},{skill.skillIcon.name},{skill.description},{skill.CURRENT_LEVEL},{skill.MAX_LEVEL},{skill.CURRENT_COOLTIME}.{skill.skillType}";
-            lines.Add(line);
-        }
+    //     foreach (Skill skill in skills)
+    //     {
+    //         string line = $"{skill.skillName},{skill.skillIcon.name},{skill.description},{skill.CURRENT_LEVEL},{skill.MAX_LEVEL},{skill.CURRENT_COOLTIME}.{skill.skillType}";
+    //         lines.Add(line);
+    //     }
 
-        // 파일 경로에 데이터 쓰기
-        File.WriteAllLines(playerSkillpath, lines.ToArray());
-    }
+    //     // 파일 경로에 데이터 쓰기
+    //     File.WriteAllLines(playerSkillpath, lines.ToArray());
+    // }
 
     // 이걸 기준으로 skillSlot생성하는 코드 구현할것
     public List<Skill_Database> Skill_All_DataToCSV()

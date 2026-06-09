@@ -63,6 +63,10 @@ public class LoadingData : MonoBehaviour
     // ------------------------------------------------------------------
     public static void LoadScene(SceneName sceneName)
     {
+        // 게임씬에서 이동할 때만 저장 (StartScene은 PlayerManager가 없음)
+        if (PlayerManager.Instance != null)
+            PlayerManager.Instance.SaveCurrentData();
+
         // enum 이름을 그대로 씬 이름 문자열로 변환
         TargetSceneName = sceneName.ToString();
         SceneManager.LoadScene(LOADING_SCENE_NAME);

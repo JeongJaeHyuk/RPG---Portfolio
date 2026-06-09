@@ -18,6 +18,9 @@ public class UI_Skill : MonoBehaviour
 
     private void Awake()
     {
+    }
+    void Start()
+    {
         allSkills = Skill_Manager.Instance.GetAllSkills();// csv데이터를 받아 가지고있는 스킬정보를 전부다 allSkills에 대입
         skillDatabases = Skill_Manager.Instance.GetSkillData();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -25,21 +28,17 @@ public class UI_Skill : MonoBehaviour
         ui = parentUI.GetComponent<UI>();
         pps = ui.GetPlayerProg();
         pps.SpLev += skillPointText;
+        GetSkillIcon();
+        IniSkillSlot();
     }
-
 
     void OnEnable()
     {
-        UI.instance.isSkillOpen = true;;
+        UI.Instance.isSkillOpen = true;;
     }
     void OnDisable()
     {
-        UI.instance.isSkillOpen = false;
-    }
-    void Start()
-    {
-        GetSkillIcon();
-        IniSkillSlot();
+        UI.Instance.isSkillOpen = false;
     }
     // 이것도 수정이 좀 필요함 12.17일 여기서부터시작
     void IniSkillSlot()

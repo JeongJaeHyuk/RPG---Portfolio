@@ -10,7 +10,7 @@ public class ToolTip_Fun : MonoBehaviour
     [SerializeField] GameObject uesGameObject;      // 사용하기 또는 장착하기 오브젝트
     [SerializeField] Text useText;                  // 사용하기 또는 장착하기 텍스트
     [SerializeField] GameObject blocker;            // 아무 화면 클릭시 처리에 필요한 오브젝트
-    [SerializeField] PlayerSpecs playerSpecs;       // 플레이어 스펙정보 스크립트
+    PlayerSpecs playerSpecs;
     [SerializeField] ToolTip_Check toolTip_Check;  // 버리기 확인용 스크립트 (몇개 버릴지 정할떄도 사용)
     Item tagetItem = null;                        // 클릭한 이미지의 아이템 정보
     bool isEquippedItem = false;                   // 장착된 아이템인지 여부
@@ -27,6 +27,13 @@ public class ToolTip_Fun : MonoBehaviour
             Instance = this;
             gameObject.SetActive(false);
         }
+    }
+
+    void Start()
+    {
+        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (objPlayer != null)
+            playerSpecs = objPlayer.GetComponent<PlayerSpecs>();
     }
     public void Close()
     {

@@ -26,6 +26,16 @@ public class UI_Equip_Status : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Debug.Log("장착스크립트");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            plsp = player.GetComponent<PlayerSpecs>();
+        }
+    }
+
     /// <summary>
     /// 무기를 장착하는 함수
     /// </summary>

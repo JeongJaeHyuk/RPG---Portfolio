@@ -29,6 +29,14 @@ public class UI_Status : MonoBehaviour
 
     private void Start()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null)
+        {
+            Debug.Log("player감지못함");
+            return;
+        }
+        pps = player.GetComponent<PlayerProgression>();
+        plsp = player.GetComponent<PlayerSpecs>();
         statusText[4].text = plsp.TOTAL_DAMAGE.ToString();
         statusText[5].text = plsp.TOTAL_DEFENSE.ToString();
     }
