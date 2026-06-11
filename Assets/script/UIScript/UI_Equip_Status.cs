@@ -28,12 +28,22 @@ public class UI_Equip_Status : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("장착스크립트");
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        // plsp는 PlayerManager.Awake()에서 SetPlayerSpecs()로 먼저 주입됨
+        // 혹시 주입이 안 된 경우 Start에서 재시도
+        if (plsp == null)
         {
-            plsp = player.GetComponent<PlayerSpecs>();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                plsp = player.GetComponent<PlayerSpecs>();
+            }
         }
+    }
+
+    // PlayerManager.Awake()에서 플레이어 스폰 직후 호출 — plsp를 미리 주입
+    public void SetPlayerSpecs(PlayerSpecs _specs)
+    {
+        plsp = _specs;
     }
 
     /// <summary>
@@ -146,19 +156,16 @@ public class UI_Equip_Status : MonoBehaviour
     /// <returns>장착된 무기 아이템, 없으면 null</returns>
     public Item GetEquippedWeapon()
     {
-        // weaponSlot.GetEquippedItem() 반환
-        return null;
+        return weaponSlot.GetEquippedItem();
     }
 
-    /// <summary>
-    /// 현재 장착된 방어구를 반환하는 함수
-    /// </summary>
-    /// <param name="_armorType">확인할 방어구 타입</param>
-    /// <returns>장착된 방어구 아이템, 없으면 null</returns>
     public Item GetEquippedArmor(ArmorType _armorType)
     {
-        // 1. _armorType에 따라 headSlot 또는 chestSlot 선택
-        // 2. 선택된 슬롯의 GetEquippedItem() 반환
-        return null;
+        switch (_armorType)
+        {
+            case ArmorType.Head:  return headSlot.GetEquippedItem();
+            case ArmorType.Chest: return chestSlot.GetEquippedItem();
+            default: return null;
+        }
     }
 }

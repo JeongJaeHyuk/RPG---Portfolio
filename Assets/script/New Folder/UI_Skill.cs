@@ -28,6 +28,7 @@ public class UI_Skill : MonoBehaviour
         ui = parentUI.GetComponent<UI>();
         pps = ui.GetPlayerProg();
         pps.SpLev += skillPointText;
+        skillPointText(pps.SKILL_POINT); // 구독 전에 이미 대입된 값으로 즉시 갱신
         GetSkillIcon();
         IniSkillSlot();
     }

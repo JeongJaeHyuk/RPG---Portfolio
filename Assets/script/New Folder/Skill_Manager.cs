@@ -12,21 +12,18 @@ public class Skill_Manager : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 설정
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject); // 중복 생성 방지
+            Destroy(gameObject);
+            return;
         }
-    }
-
-    private void Start()
-    {
-        skills = skillDataManager.LoadSkillsFromCSV(); // 테이블에 저장된 플레이어 스킬 정보 불러오기
-        skillData = skillDataManager.Skill_All_DataToCSV(); // 테이블에 저장된 스킬 정보 불러오기
+        // Awake에서 로드해야 PlayerManager.Awake()의 ApplyData()에서 참조 가능
+        skills    = skillDataManager.LoadSkillsFromCSV();
+        skillData = skillDataManager.Skill_All_DataToCSV();
     }
 
     // 불러온 스킬csv정보를 UI_Skill 이라는곳에 주는 함수

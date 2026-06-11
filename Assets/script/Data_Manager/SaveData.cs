@@ -50,6 +50,11 @@ public class SaveData
     // 골드 (UI_Inventory 스크립트와 연동)
     public int gold = 0;
 
+    // 장착 중인 아이템 ID (-1 = 미장착)
+    public int equippedWeaponId = -1;
+    public int equippedHeadId   = -1;
+    public int equippedChestId  = -1;
+
     // ------------------------------------------------------------------
     // 스킬 데이터
     // ------------------------------------------------------------------

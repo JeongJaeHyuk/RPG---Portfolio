@@ -41,13 +41,21 @@ public class UI_SaveSlot : MonoBehaviour
         startMenu = _startMenu;
 
         // 텍스트 UI에 세이브 정보 표시
-        slotNameText.text  = data.saveName;
-        slotDateText.text  = data.saveDate;
+        slotNameText.text  = "저장된 이름 : " + data.saveName;
         slotLevelText.text = "Lv." + data.playerLevel;
+        slotDateText.text  = "저장된 날짜 :" + data.saveDate;
 
-        // 버튼에 리스너 연결
-        // 람다(=>)를 사용해서 data.saveName을 캡처해 버튼마다 다른 이름을 전달합니다
-        selectButton.onClick.AddListener(() => startMenu.SelectSaveAndLoad(data.saveName));
-        deleteButton.onClick.AddListener(() => startMenu.DeleteSaveSlot(data.saveName));
+    }
+
+    // 선택 버튼 OnClick에 연결 (에디터에서 연결)
+    public void SlotSelect()
+    {
+        Check_ToolTip.Instance.ShowLoadConfirm(() => startMenu.SelectSaveAndLoad(data.saveName));
+    }
+
+    // 삭제 버튼 OnClick에 연결 (에디터에서 연결)
+    public void SlotDelete()
+    {
+        Check_ToolTip.Instance.ShowDeleteConfirm(() => startMenu.DeleteSaveSlot(data.saveName));
     }
 }

@@ -8,7 +8,7 @@ public class Skill_Data_Manager : MonoBehaviour
 {
     string playerSkillpath = string.Empty;
     string skillDataPath = string.Empty;
-    private void Start()
+    private void Awake()
     {
         playerSkillpath = Application.dataPath + "/" + "Resources" + "/" + "SkillDataPath" + "/" + "Player_Skill_Data.csv";
         skillDataPath = Application.dataPath + "/" + "Resources" + "/" + "SkillDataPath" + "/" + "SkillAllData.csv";

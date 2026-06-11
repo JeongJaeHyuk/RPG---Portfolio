@@ -6,26 +6,9 @@ using UnityEngine.UI;
 public class UI_Status : MonoBehaviour
 {
     [SerializeField] List<Text> statusText;
-    [SerializeField] UI ui;
     [SerializeField] PlayerProgression pps;
     [SerializeField] PlayerSpecs plsp;
 
-    private void Awake()
-    {
-        Transform parentUI = gameObject.transform.root;
-        ui = parentUI.GetComponent<UI>();
-        pps = ui.GetPlayerProg();
-        plsp = ui.GetPlayerSpecs();
-        if (ui != null && pps != null && plsp != null)
-        {
-            pps.LevChage += UpdateLevel;
-            plsp.HpChage += UpdateHp;
-            plsp.MpChage += UpdateMp;
-            pps.ExpChage += UpdateExp;
-            plsp.TotalDamage += UpdateDamage;
-            plsp.TotalDefense += UpdateDefens;
-        }
-    }
 
     private void Start()
     {
@@ -39,21 +22,45 @@ public class UI_Status : MonoBehaviour
         plsp = player.GetComponent<PlayerSpecs>();
         statusText[4].text = plsp.TOTAL_DAMAGE.ToString();
         statusText[5].text = plsp.TOTAL_DEFENSE.ToString();
+        if (pps != null && plsp != null)
+        {
+            pps.LevChage += UpdateLevel;
+            plsp.HpChage += UpdateHp;
+            plsp.MpChage += UpdateMp;
+            pps.ExpChage += UpdateExp;
+            plsp.TotalDamage += UpdateDamage;
+            plsp.TotalDefense += UpdateDefens;
+        }
+        // 첫 활성화 시 UIBackground가 StatusRefresh를 Start 전에 호출해서 null 반환했으므로 여기서 직접 갱신
+        StatusRefresh();
+    }
+    // 실제로 오브젝트 온오프되는곳에서 실행
+    public void StatusRefresh()
+    {
+        // Start() 이전 첫 호출 시 pps/plsp가 아직 null이므로 스킵
+        if (pps == null || plsp == null)
+        {
+            return;
+        }
+        statusText[0].text = pps.CURRENT_LEVEL.ToString();
+        statusText[1].text = plsp.CURRENT_HP + " / " + plsp.MAX_HP;
+        statusText[2].text = plsp.CURRENT_MP + " / " + plsp.MAX_MP;
+        statusText[3].text = pps.CURRENT_EXP + " / " + pps.MAX_EXP;
     }
     private void OnDestroy()
     {
         if (pps != null)
-    {
-        pps.LevChage -= UpdateLevel;
-        pps.ExpChage -= UpdateExp;
-    }
-    if (plsp != null)
-    {
-        plsp.HpChage -= UpdateHp;
-        plsp.MpChage -= UpdateMp;
-        plsp.TotalDamage -= UpdateDamage;
-        plsp.TotalDefense -= UpdateDefens;
-    }
+        {
+            pps.LevChage -= UpdateLevel;
+            pps.ExpChage -= UpdateExp;
+        }
+        if (plsp != null)
+        {
+            plsp.HpChage -= UpdateHp;
+            plsp.MpChage -= UpdateMp;
+            plsp.TotalDamage -= UpdateDamage;
+            plsp.TotalDefense -= UpdateDefens;
+        }
     }
 
     void UpdateLevel(float _value)

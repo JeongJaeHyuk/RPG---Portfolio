@@ -21,16 +21,19 @@ public class SkillOn : MonoBehaviour
             Destroy(gameObject);
         }
         //리소스정보를 모아서 오브젝트를 소환하는 함수들
+        // rcCreateSkillQ();
+        // rcCreateSkillW();
+        // rcCreateSkillE();
+        // rcCreateSkillR();
+        //
+    }
+
+    void Start()
+    {
         rcCreateSkillQ();
         rcCreateSkillW();
         rcCreateSkillE();
         rcCreateSkillR();
-        //
-
-    }
-    void Start()
-    {
-        
     }
     #region 여기서 사용하는함수들
     // 리소스 폴더에서 스킬 Q정보를 가져와서 생성하는 함수

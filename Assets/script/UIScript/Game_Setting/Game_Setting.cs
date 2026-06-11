@@ -21,14 +21,14 @@ public class Game_Setting : MonoBehaviour
     // 저장하기 버튼
     public void GameSave()
     {
-        //PlayerManager.Instance.SaveCurrentData();
+        PlayerManager.Instance.SaveCurrentData();
         Debug.Log("저장 완료");
     }
 
     // 게임 종료 버튼
     public void GameExit()
     {
-        //PlayerManager.Instance.SaveCurrentData();
+        PlayerManager.Instance.SaveCurrentData();
         Application.Quit();
         Debug.Log("게임 종료");
     }

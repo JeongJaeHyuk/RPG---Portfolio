@@ -39,11 +39,9 @@ public class Item_Manager : MonoBehaviour
             switch(item.type)
             {
                 case ItemType.Weapon:
-                Debug.Log("무기 들감");
                     weaponList.Add(item);
                     break;
                 case ItemType.Armor:
-                Debug.Log("방어구 들감");
                     armorList.Add(item);
                     break;
                 case ItemType.Consumable:

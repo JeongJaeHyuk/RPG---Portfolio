@@ -34,6 +34,13 @@ public class PlayerManager : MonoBehaviour
         playerSpecs       = player.GetComponent<PlayerSpecs>();
         playerProgression = player.GetComponent<PlayerProgression>();
 
+        // UI_Equip_Status는 Start()에서 플레이어를 찾지만,
+        // ApplyData()가 Awake()에서 EquipWeapon을 호출하므로 지금 미리 주입
+        if (UI_Equip_Status.Instance != null)
+        {
+            UI_Equip_Status.Instance.SetPlayerSpecs(playerSpecs);
+        }
+
         // 2. 세이브 데이터 로드
         SaveData data = PlayerDataManager.LoadGame();
 
@@ -53,7 +60,13 @@ public class PlayerManager : MonoBehaviour
     public void SaveCurrentData()
     {
         SaveData data = PlayerDataManager.LoadGame();
-        if (data == null) return;
+        if (data == null)
+        {
+            Debug.LogWarning("[Save] 세이브 파일 없음 — 저장 취소");
+            return;
+        }
+
+        Debug.Log("===== [Save] 저장 시작 =====");
 
         // ── 스탯 ──────────────────────────────────────────────────────
         data.currentHp    = playerSpecs.CURRENT_HP;
@@ -62,6 +75,7 @@ public class PlayerManager : MonoBehaviour
         data.maxMp        = playerSpecs.MAX_MP;
         data.basicDamage  = playerSpecs.BASICDAMAGE;
         data.basicDefense = playerSpecs.BASICDEFENSE;
+        Debug.Log($"[Save] HP:{data.currentHp}/{data.maxHp}  MP:{data.currentMp}/{data.maxMp}  ATK:{data.basicDamage}  DEF:{data.basicDefense}");
 
         // ── 레벨 / 경험치 ──────────────────────────────────────────────
         data.playerLevel = playerProgression.CURRENT_LEVEL;
@@ -69,6 +83,7 @@ public class PlayerManager : MonoBehaviour
         data.currentExp  = playerProgression.CURRENT_EXP;
         data.maxExp      = playerProgression.MAX_EXP;
         data.skillPoint  = playerProgression.SKILL_POINT;
+        Debug.Log($"[Save] Lv:{data.playerLevel}/{data.maxLevel}  EXP:{data.currentExp}/{data.maxExp}  SP:{data.skillPoint}");
 
         // ── 위치 ──────────────────────────────────────────────────────
         if (player != null)
@@ -77,36 +92,85 @@ public class PlayerManager : MonoBehaviour
             data.posY = player.transform.position.y;
             data.posZ = player.transform.position.z;
         }
+        Debug.Log($"[Save] 위치:({data.posX:F1}, {data.posY:F1}, {data.posZ:F1})");
+
+        // ── 장착 아이템 ───────────────────────────────────────────────
+        data.equippedWeaponId = -1;
+        data.equippedHeadId   = -1;
+        data.equippedChestId  = -1;
+
+        Item savedWeapon = null;
+        Item savedHead   = null;
+        Item savedChest  = null;
+
+        if (UI_Equip_Status.Instance != null)
+        {
+            savedWeapon = UI_Equip_Status.Instance.GetEquippedWeapon();
+            savedHead   = UI_Equip_Status.Instance.GetEquippedArmor(ArmorType.Head);
+            savedChest  = UI_Equip_Status.Instance.GetEquippedArmor(ArmorType.Chest);
+
+            data.equippedWeaponId = savedWeapon != null ? savedWeapon.itemId : -1;
+            data.equippedHeadId   = savedHead   != null ? savedHead.itemId   : -1;
+            data.equippedChestId  = savedChest  != null ? savedChest.itemId  : -1;
+        }
+        Debug.Log($"[Save] 장착 — 무기ID:{data.equippedWeaponId}  머리ID:{data.equippedHeadId}  가슴ID:{data.equippedChestId}");
 
         // ── 골드 / 인벤토리 ───────────────────────────────────────────
-        // 아이템 전체 정보를 저장하지 않고 itemId + count + category 만 저장
-        // 불러올 때 itemId로 Item_Manager에서 원본 정보를 다시 조회하는 방식 (DB 참조 방식)
         if (UI_Inventory.inven != null)
         {
             data.gold = UI_Inventory.inven.GOLD;
+            Debug.Log($"[Save] 골드:{data.gold}");
 
-            // 이전 저장 내용을 비우고 현재 인벤토리 상태로 덮어씀
             data.inventory.Clear();
+
             foreach (Item item in UI_Inventory.inven.EQUIPLIST)
+            {
                 data.inventory.Add(new ItemSaveData { itemId = item.itemId, count = item.currentCount, itemCategory = item.type });
+                Debug.Log($"[Save]  인벤(장비) id:{item.itemId} {item.itemName} x{item.currentCount}");
+            }
             foreach (Item item in UI_Inventory.inven.CONSUMELIST)
+            {
                 data.inventory.Add(new ItemSaveData { itemId = item.itemId, count = item.currentCount, itemCategory = item.type });
+                Debug.Log($"[Save]  인벤(소비) id:{item.itemId} {item.itemName} x{item.currentCount}");
+            }
             foreach (Item item in UI_Inventory.inven.MATERIALLIST)
+            {
                 data.inventory.Add(new ItemSaveData { itemId = item.itemId, count = item.currentCount, itemCategory = item.type });
+                Debug.Log($"[Save]  인벤(재료) id:{item.itemId} {item.itemName} x{item.currentCount}");
+            }
+
+            // 장착 중인 아이템은 EQUIPLIST에서 빠져있으므로 명시적으로 추가
+            if (savedWeapon != null)
+            {
+                data.inventory.Add(new ItemSaveData { itemId = savedWeapon.itemId, count = savedWeapon.currentCount, itemCategory = savedWeapon.type });
+                Debug.Log($"[Save]  장착무기 인벤포함 id:{savedWeapon.itemId} {savedWeapon.itemName}");
+            }
+            if (savedHead != null)
+            {
+                data.inventory.Add(new ItemSaveData { itemId = savedHead.itemId, count = savedHead.currentCount, itemCategory = savedHead.type });
+                Debug.Log($"[Save]  장착머리 인벤포함 id:{savedHead.itemId} {savedHead.itemName}");
+            }
+            if (savedChest != null)
+            {
+                data.inventory.Add(new ItemSaveData { itemId = savedChest.itemId, count = savedChest.currentCount, itemCategory = savedChest.type });
+                Debug.Log($"[Save]  장착가슴 인벤포함 id:{savedChest.itemId} {savedChest.itemName}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[Save] UI_Inventory.inven == null — 인벤토리 저장 안됨");
         }
 
         // ── 스킬 ──────────────────────────────────────────────────────
         data.skills.Clear();
         foreach (Skill skill in Skill_Manager.Instance.GetAllSkills())
         {
-            data.skills.Add(new SkillSaveData
-            {
-                skillName    = skill.skillName,
-                currentLevel = skill.CURRENT_LEVEL
-            });
+            data.skills.Add(new SkillSaveData { skillName = skill.skillName, currentLevel = skill.CURRENT_LEVEL });
+            Debug.Log($"[Save]  스킬:{skill.skillName}  Lv:{skill.CURRENT_LEVEL}");
         }
 
         PlayerDataManager.SaveGame(data);
+        Debug.Log("===== [Save] 저장 완료 =====");
     }
 
     // ------------------------------------------------------------------
@@ -122,12 +186,15 @@ public class PlayerManager : MonoBehaviour
     // ------------------------------------------------------------------
     void ApplyData(SaveData data)
     {
+        Debug.Log("===== [Load] 로드 시작 =====");
+
         // PlayerProgression 적용 (MAX 먼저, CURRENT 나중)
         playerProgression.MAX_LEVEL     = data.maxLevel;
         playerProgression.MAX_EXP       = data.maxExp;
         playerProgression.CURRENT_LEVEL = data.playerLevel;
         playerProgression.CURRENT_EXP   = data.currentExp;
         playerProgression.SKILL_POINT   = data.skillPoint;
+        Debug.Log($"[Load] Lv:{playerProgression.CURRENT_LEVEL}/{playerProgression.MAX_LEVEL}  EXP:{playerProgression.CURRENT_EXP}/{playerProgression.MAX_EXP}  SP:{playerProgression.SKILL_POINT}");
 
         // PlayerSpecs 적용 (MAX 먼저, CURRENT 나중)
         playerSpecs.MAX_HP       = data.maxHp;
@@ -136,52 +203,132 @@ public class PlayerManager : MonoBehaviour
         playerSpecs.BASICDEFENSE = data.basicDefense;
         playerSpecs.CURRENT_HP   = data.currentHp;
         playerSpecs.CURRENT_MP   = data.currentMp;
+        Debug.Log($"[Load] HP:{playerSpecs.CURRENT_HP}/{playerSpecs.MAX_HP}  MP:{playerSpecs.CURRENT_MP}/{playerSpecs.MAX_MP}  ATK:{playerSpecs.BASICDAMAGE}  DEF:{playerSpecs.BASICDEFENSE}");
 
         // ── 스킬 ──────────────────────────────────────────────────────
         if (data.skills != null && data.skills.Count > 0)
         {
-            // .sav에 저장된 레벨로 덮어씌우기
             foreach (SkillSaveData savedSkill in data.skills)
             {
                 Skill skill = Skill_Manager.Instance.GetAllSkills().Find(s => s.skillName == savedSkill.skillName);
                 if (skill != null)
+                {
+                    Skill_Database db = Skill_Manager.Instance.GetSkillData().Find(d => d.skill_Id == savedSkill.skillName);
+                    if (db != null)
+                    {
+                        skill.MAX_LEVEL = db.maxLevel;
+                    }
                     skill.CURRENT_LEVEL = savedSkill.currentLevel;
-                Debug.Log("저장된 스킬레벨 = " +  savedSkill.currentLevel);
-                Debug.Log("불러온 스킬레벨 = " + skill.CURRENT_LEVEL);
+                    Debug.Log($"[Load]  스킬:{skill.skillName}  Lv:{skill.CURRENT_LEVEL}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[Load]  스킬 못찾음:{savedSkill.skillName}");
+                }
             }
         }
-        // data.skills가 null이면 CSV 기본값(레벨 0) 그대로 유지
+        else
+        {
+            Debug.LogWarning("[Load] 저장된 스킬 데이터 없음");
+        }
 
         // ── 인벤토리 ──────────────────────────────────────────────────
         if (UI_Inventory.inven != null)
         {
             UI_Inventory.inven.GOLD = data.gold;
+            Debug.Log($"[Load] 골드:{data.gold}");
 
-            // itemId로 Item_Manager에서 원본 아이템 정보를 찾아 복사본 생성 후 인벤토리에 추가
-            // AddItemInventory() 대신 리스트에 직접 추가하는 이유:
-            // AddItemInventory()는 퀘스트 이벤트를 발생시켜 로드 중 퀘스트가 오작동할 수 있음
             if (data.inventory != null && data.inventory.Count > 0 && Item_Manager.Instance != null)
             {
                 foreach (ItemSaveData itemData in data.inventory)
                 {
-                    // itemId로 CSV에서 불러온 원본 아이템 조회
                     Item original = Item_Manager.Instance.GetItemById(itemData.itemId);
-                    if (original == null) continue;
+                    if (original == null)
+                    {
+                        Debug.LogWarning($"[Load]  아이템 못찾음 id:{itemData.itemId}");
+                        continue;
+                    }
 
-                    // 원본을 복사하고 저장된 개수를 덮어씀
                     Item copy = new Item(original);
                     copy.currentCount = itemData.count;
 
-                    // itemCategory에 따라 맞는 리스트에 직접 추가
                     switch (itemData.itemCategory)
                     {
                         case ItemType.Weapon:
-                        case ItemType.Armor:      UI_Inventory.inven.EQUIPLIST.Add(copy);    break;
-                        case ItemType.Consumable: UI_Inventory.inven.CONSUMELIST.Add(copy);  break;
-                        case ItemType.Material:   UI_Inventory.inven.MATERIALLIST.Add(copy); break;
+                        case ItemType.Armor:
+                            UI_Inventory.inven.EQUIPLIST.Add(copy);
+                            Debug.Log($"[Load]  인벤(장비) id:{copy.itemId} {copy.itemName} x{copy.currentCount}");
+                            break;
+                        case ItemType.Consumable:
+                            UI_Inventory.inven.CONSUMELIST.Add(copy);
+                            Debug.Log($"[Load]  인벤(소비) id:{copy.itemId} {copy.itemName} x{copy.currentCount}");
+                            break;
+                        case ItemType.Material:
+                            UI_Inventory.inven.MATERIALLIST.Add(copy);
+                            Debug.Log($"[Load]  인벤(재료) id:{copy.itemId} {copy.itemName} x{copy.currentCount}");
+                            break;
                     }
                 }
             }
+            else
+            {
+                Debug.LogWarning("[Load] 저장된 인벤토리 없음");
+            }
         }
+        else
+        {
+            Debug.LogWarning("[Load] UI_Inventory.inven == null — 인벤토리 로드 안됨");
+        }
+
+        // ── 장착 아이템 복원 ──────────────────────────────────────────
+        Debug.Log($"[Load] 장착복원 시도 — 무기ID:{data.equippedWeaponId}  머리ID:{data.equippedHeadId}  가슴ID:{data.equippedChestId}");
+        if (UI_Equip_Status.Instance != null && UI_Inventory.inven != null)
+        {
+            if (data.equippedWeaponId != -1)
+            {
+                Item weapon = UI_Inventory.inven.EQUIPLIST.Find(i => i.itemId == data.equippedWeaponId);
+                if (weapon != null)
+                {
+                    UI_Equip_Status.Instance.EquipWeapon(weapon);
+                    Debug.Log($"[Load]  무기 장착됨:{weapon.itemName}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[Load]  무기 EQUIPLIST에 없음 id:{data.equippedWeaponId}");
+                }
+            }
+            if (data.equippedHeadId != -1)
+            {
+                Item head = UI_Inventory.inven.EQUIPLIST.Find(i => i.itemId == data.equippedHeadId);
+                if (head != null)
+                {
+                    UI_Equip_Status.Instance.EquipArmor(head);
+                    Debug.Log($"[Load]  머리 장착됨:{head.itemName}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[Load]  머리 EQUIPLIST에 없음 id:{data.equippedHeadId}");
+                }
+            }
+            if (data.equippedChestId != -1)
+            {
+                Item chest = UI_Inventory.inven.EQUIPLIST.Find(i => i.itemId == data.equippedChestId);
+                if (chest != null)
+                {
+                    UI_Equip_Status.Instance.EquipArmor(chest);
+                    Debug.Log($"[Load]  가슴 장착됨:{chest.itemName}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[Load]  가슴 EQUIPLIST에 없음 id:{data.equippedChestId}");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"[Load] 장착복원 불가 — UI_Equip_Status:{UI_Equip_Status.Instance != null}  UI_Inventory:{UI_Inventory.inven != null}");
+        }
+
+        Debug.Log("===== [Load] 로드 완료 =====");
     }
 }

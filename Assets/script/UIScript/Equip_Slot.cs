@@ -66,8 +66,8 @@ public class Equip_Slot : MonoBehaviour, IPointerClickHandler
     }
     void Start()
     {
-        // itemIcon 초기화 (시작할 때는 아이콘 숨기기)
-        if(itemIcon != null)
+        // 이미 장착된 아이템이 있으면 아이콘 유지 (ApplyData가 Awake에서 EquipItem을 먼저 호출)
+        if (itemIcon != null && currentEquipItem == null)
         {
             itemIcon.enabled = false;
         }

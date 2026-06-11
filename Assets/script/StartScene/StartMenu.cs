@@ -126,11 +126,22 @@ public class StartMenu : MonoBehaviour
     {
         // 기존에 생성된 슬롯 오브젝트를 전부 삭제 (이전 목록 초기화)
         foreach (Transform child in slotParent)
+        {
             Destroy(child.gameObject);
+        }           
 
         // PlayerDataManager에서 모든 세이브 파일 정보를 가져옵니다 (최신순 정렬)
         List<SaveData> saves = PlayerDataManager.GetAllSaves();
 
+        // 저장된 파일이 없으면 안내 텍스트만 표시하고 패널 열지 않음
+        if (saves.Count == 0)
+        {
+            Check_ToolTip.Instance.ShowEmptySlot();
+            return;
+        }
+        // 저장된 파일이 있으면 안내 텍스트를 키지않는다.
+        Check_ToolTip.Instance.gameObject.SetActive(false);
+        
         // 세이브 파일 개수만큼 슬롯 UI를 생성하고 데이터를 넣어줍니다
         foreach (SaveData save in saves)
         {
@@ -149,7 +160,7 @@ public class StartMenu : MonoBehaviour
     public void SelectSaveAndLoad(string saveName)
     {
         PlayerDataManager.SelectSave(saveName);
-        // LoadingData.LoadScene(gameSceneName); 나중에 사용할꺼라 일단 주석처리 코드좀 고쳐야함
+        LoadingData.LoadScene(SceneName.TownScene);
     }
 
     // UI_SaveSlot의 [삭제] 버튼에서 호출
