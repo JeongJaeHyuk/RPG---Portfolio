@@ -73,6 +73,7 @@ public class SaveData
     // ------------------------------------------------------------------
     public List<int> completedQuestIds = new List<int>();       // 완료한 퀘스트 ID 목록
     public List<QuestSaveData> activeQuests = new List<QuestSaveData>(); // 진행 중인 퀘스트 목록
+    public List<int> trackedQuestIds = new List<int>();         // 팝업에 추적 중인 퀘스트 ID 목록
 }
 
 // =====================================================================

@@ -7,7 +7,7 @@ public class UI_Quest : MonoBehaviour
 {
     public static UI_Quest instance = null;
     [Header("Player 경험치 접근")]
-    [SerializeField] PlayerProgression playerProgression;
+    PlayerProgression playerProgression;
 
     [Header("UI 요소")]
     [SerializeField] Transform questSlotParent;         // 퀘스트 슬롯들의 부모 (Content)
@@ -59,6 +59,7 @@ public class UI_Quest : MonoBehaviour
     {
         // TODO: 퀘스트 창 비활성화
         gameObject.SetActive(false);
+        playerProgression = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerProgression>();
     }
 
     void RefreshQuestList()
@@ -315,5 +316,22 @@ public class UI_Quest : MonoBehaviour
     public bool IsQuestAccepted(int questId)
     {
         return playerQuests.Exists(q => q.questId == questId);
+    }
+    // 저장시 현재 수행중인 퀘스트리스트 반환
+    public List<Quest> GetCurrentQuestList()
+    {
+        return playerQuests;
+    }
+    // 저장시 완료한 퀘스트 반환 이것은 id값만 잇으면 되서
+    public List<int> GetCompleteQuestList()
+    {
+        return completedQuestIds;
+    }
+    // 로드시 저장된 수행중인 퀘스트와 완료한 퀘스트 id받는 함수
+    public void LoadQuestData(List<Quest> _quests, List<int> _completedIds)
+    {
+        playerQuests = _quests;
+        completedQuestIds = _completedIds;
+        RefreshQuestList();
     }
 }

@@ -1392,7 +1392,6 @@ MonoBehaviour:
   uesGameObject: {fileID: 1100886667}
   useText: {fileID: 1968342986}
   blocker: {fileID: 8485408293093668610}
-  playerSpecs: {fileID: 0}
   toolTip_Check: {fileID: 1510596033}
 --- !u!1 &929009842
 GameObject:

@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
     [SerializeField] Player player = null;
     [SerializeField] PlayerSpecs plsl = null;
     [SerializeField] PlayerProgression pps = null;
-    public bool IsAnyUIOpen => isInvenOpen || isSkillOpen || isShopOpen || isPlayerStatOpen;
+    public bool IsAnyUIOpen => isInvenOpen || isSkillOpen || isShopOpen || isPlayerStatOpen || (questBackGround != null && questBackGround.activeSelf);
     public bool isInvenOpen = false;
     public bool isSkillOpen = false;
     public bool isShopOpen = false;

@@ -16,20 +16,15 @@ public class Quest_Data_Manager : MonoBehaviour
 
     void Awake()
     {
-        // 싱글톤 설정
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-    }
-
-    void Start()
-    {
-        // 게임 시작 시 자동으로 CSV 로드
         LoadQuestData();
     }
 
@@ -124,5 +119,19 @@ public class Quest_Data_Manager : MonoBehaviour
             Debug.LogWarning($"NPC ID {npcId}에 해당하는 퀘스트가 없습니다.");
             return null;
         }
+    }
+
+    // 퀘스트 ID로 원본 퀘스트 반환 (세이브 로드 시 사용)
+    public Quest GetQuestById(int _questId)
+    {
+        foreach (List<Quest> quests in questsByNPC.Values)
+        {
+            Quest found = quests.Find(q => q.questId == _questId);
+            if (found != null)
+            {
+                return found;
+            }
+        }
+        return null;
     }
 }

@@ -36,10 +36,12 @@ public class NPC_Quest : MonoBehaviour
 
     void Update()
     {
-        // TODO: Space 키 입력 처리
         if(Input.GetKeyDown(KeyCode.Space) && IsPlayer)
         {
-            UI_QuestWindow.instance.ShowQuestWindow(npcId);
+            if(UI_QuestWindow.instance.gameObject.activeSelf)
+                UI_QuestWindow.instance.CloseWindow();
+            else
+                UI_QuestWindow.instance.ShowQuestWindow(npcId);
         }
     }
 }

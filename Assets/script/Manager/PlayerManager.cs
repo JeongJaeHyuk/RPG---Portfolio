@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // =====================================================================
@@ -169,6 +170,31 @@ public class PlayerManager : MonoBehaviour
             Debug.Log($"[Save]  스킬:{skill.skillName}  Lv:{skill.CURRENT_LEVEL}");
         }
 
+        // ── 퀘스트 ────────────────────────────────────────────────────
+        if (UI_Quest.instance != null)
+        {
+            data.activeQuests.Clear();
+            foreach (Quest quest in UI_Quest.instance.GetCurrentQuestList())
+            {
+                data.activeQuests.Add(new QuestSaveData { questId = quest.questId, currentProgress = quest.CURRENTPROGRESS });
+                Debug.Log($"[Save]  퀘스트:{quest.questName}  진행도:{quest.CURRENTPROGRESS}/{quest.targetCount}");
+            }
+            data.completedQuestIds.Clear();
+            data.completedQuestIds.AddRange(UI_Quest.instance.GetCompleteQuestList());
+            Debug.Log($"[Save] 완료퀘스트 {data.completedQuestIds.Count}개");
+
+            // 팝업 추적 중인 퀘스트 ID 저장
+            data.trackedQuestIds.Clear();
+            if (Quest_Progress_Popup.instance != null)
+            {
+                foreach (Quest quest in Quest_Progress_Popup.instance.GetTrackedQuests())
+                {
+                    data.trackedQuestIds.Add(quest.questId);
+                    Debug.Log($"[Save]  팝업추적 questId:{quest.questId} {quest.questName}");
+                }
+            }
+        }
+
         PlayerDataManager.SaveGame(data);
         Debug.Log("===== [Save] 저장 완료 =====");
     }
@@ -327,6 +353,46 @@ public class PlayerManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"[Load] 장착복원 불가 — UI_Equip_Status:{UI_Equip_Status.Instance != null}  UI_Inventory:{UI_Inventory.inven != null}");
+        }
+
+        // ── 퀘스트 복원 ───────────────────────────────────────────────
+        // 로드 시 playerQuests가 새 객체로 교체되므로 팝업의 이벤트 구독이 끊김
+        // 팝업을 먼저 초기화하고 플레이어가 퀘스트 창에서 다시 등록하도록 유도
+        if (Quest_Progress_Popup.instance != null)
+        {
+            Quest_Progress_Popup.instance.ClearAllTrackedQuests();
+        }
+        if (UI_Quest.instance != null && Quest_Data_Manager.instance != null)
+        {
+            List<Quest> loadedQuests = new List<Quest>();
+            foreach (QuestSaveData saved in data.activeQuests)
+            {
+                Quest original = Quest_Data_Manager.instance.GetQuestById(saved.questId);
+                if (original == null)
+                {
+                    Debug.LogWarning($"[Load]  퀘스트 못찾음 id:{saved.questId}");
+                    continue;
+                }
+                Quest copy = new Quest(original);
+                copy.CURRENTPROGRESS = saved.currentProgress;
+                loadedQuests.Add(copy);
+                Debug.Log($"[Load]  퀘스트:{copy.questName}  진행도:{copy.CURRENTPROGRESS}/{copy.targetCount}");
+            }
+            UI_Quest.instance.LoadQuestData(loadedQuests, data.completedQuestIds);
+
+            // 팝업 추적 퀘스트 복원 — playerQuests에서 id로 찾아서 AddTrackedQuest 호출
+            if (Quest_Progress_Popup.instance != null)
+            {
+                foreach (int questId in data.trackedQuestIds)
+                {
+                    Quest quest = loadedQuests.Find(q => q.questId == questId);
+                    if (quest != null)
+                    {
+                        Quest_Progress_Popup.instance.AddTrackedQuest(quest);
+                        Debug.Log($"[Load]  팝업추적 복원:{quest.questName}");
+                    }
+                }
+            }
         }
 
         Debug.Log("===== [Load] 로드 완료 =====");
