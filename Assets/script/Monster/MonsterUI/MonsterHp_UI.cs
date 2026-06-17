@@ -5,19 +5,15 @@ using UnityEngine.UI;
 
 public class MonsterHp_UI : MonoBehaviour
 {
-    [SerializeField] Monster_Stats monsterStats;
+    [SerializeField] Monster_Spec monsterSpec;
     [SerializeField] Image hpBar;
     private void Awake()
     {
         hpBar = gameObject.GetComponent<Image>();
-        if (monsterStats != null)
+        if (monsterSpec != null)
         {
-            monsterStats.MonsterHP += UpdateMonsterHP;
+            monsterSpec.MonsterHP += UpdateMonsterHP;
         }
-    }
-    void Start()
-    {
-        
     }
 
     void UpdateMonsterHP(float _value)

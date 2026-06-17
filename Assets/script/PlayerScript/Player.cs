@@ -328,12 +328,12 @@ public class Player : MonoBehaviour
             switch (mob.name) // 충돌한 오브젝트 이름을 받아와서 이름에 따라 관련 로직수행
             {
                 case "Monster_1":
-                    Monster_Stats monsterStats = other.gameObject.GetComponent<Monster_Stats>();
-                    if (monsterStats != null)
-                    {
-                        HitDamage(monsterStats.MONSTER_DAMAGE);
-                        break;
-                    }
+                    // Monster_Stats monsterStats = other.gameObject.GetComponent<Monster_Stats>();
+                    // if (monsterStats != null)
+                    // {
+                    //     HitDamage(monsterStats.MONSTER_DAMAGE);
+                    //     break;
+                    // }
                     break;
                 case "b":
 

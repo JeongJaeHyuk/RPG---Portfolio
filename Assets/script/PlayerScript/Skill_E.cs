@@ -71,15 +71,15 @@ public class Skill_E : MonoBehaviour
     // 몬스터와 충돌 시 데미지 전달
     private void OnTriggerEnter(Collider other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer).Equals("Monster"))
-        {
-            Monster_Attack_Hit monster = other.GetComponent<Monster_Attack_Hit>();
-            if (monster != null)
-            {
-                float damage = SkillAttack();
-                monster.TakeDamage(damage, plsp, pps);
-                Debug.Log($"Skill_E Hit! Damage: {damage}");
-            }
-        }
+        // if (LayerMask.LayerToName(other.gameObject.layer).Equals("Monster"))
+        // {
+        //     Monster_Attack_Hit monster = other.GetComponent<Monster_Attack_Hit>();
+        //     if (monster != null)
+        //     {
+        //         float damage = SkillAttack();
+        //         monster.TakeDamage(damage, plsp, pps);
+        //         Debug.Log($"Skill_E Hit! Damage: {damage}");
+        //     }
+        // }
     }
 }
