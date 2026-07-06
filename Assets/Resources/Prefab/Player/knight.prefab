@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623349357}
   - component: {fileID: 1623349358}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: DamageSensor
   m_TagString: Spear
   m_Icon: {fileID: 0}

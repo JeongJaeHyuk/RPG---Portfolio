@@ -20,7 +20,9 @@ public class Monster_Move : MonoBehaviour
 
     void Update()
     {
-        if (monsterState.GetIsIdle()) return; // 대기 상태면 이동 로직 전체 스킵
+        if (monsterState.GetIsDead()) return;      // 사망 시 이동 차단
+        if (monsterState.GetIsIdle()) return;      // 대기 상태면 이동 로직 전체 스킵
+        if (monsterState.GetIsAttacking()) return; // 공격 중 이동 차단
 
         if (monsterState.GetPlayer() != null)
         {
@@ -39,8 +41,9 @@ public class Monster_Move : MonoBehaviour
         if (dis <= monsterState.monsterSpec.MONSTER_RANGE) // 공격 사거리 이내
         {
             nav.isStopped = true;
-            if (!monsterState.GetIsAttacking()) // 공격 중이 아닐 때만 공격 시작
+            if (!monsterState.GetIsAttacking()) // 공격 중이 아닐 때만 회전 및 공격 시작
             {
+                LookAtPlayer();
                 monsterState.EnterAttack();
             }
         }
@@ -60,6 +63,16 @@ public class Monster_Move : MonoBehaviour
                     monsterState.StopMoveAnim();
                 }
             }
+        }
+    }
+
+    void LookAtPlayer()
+    {
+        Vector3 dir = monsterState.GetPlayer().transform.position - transform.position;
+        dir.y = 0;
+        if (dir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(dir);
         }
     }
 

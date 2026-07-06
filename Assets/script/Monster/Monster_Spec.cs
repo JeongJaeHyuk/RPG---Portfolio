@@ -13,6 +13,7 @@ public class Monster_Spec : MonoBehaviour
     float monsterRange; // 몬스터 공격사거리
     float monsterAttackTime; // 공격속도(n초 마다 공격)
     float monsExp; // 몬스터가 주는 경험치
+    int gold;      // 드롭 골드
     public float MAX_HP
     {
         get => maxMonsterHp;
@@ -36,14 +37,22 @@ public class Monster_Spec : MonoBehaviour
     public float MONSTER_EXP        { get => monsExp;            private set => monsExp = value; }
     public float MONSTER_RANGE      { get => monsterRange;       private set => monsterRange = value; }
     public float MONSTER_ATTACKTIME { get => monsterAttackTime;  private set => monsterAttackTime = value; }
+    public int   MONSTER_GOLD       { get => gold;               private set => gold = value; }
+
     void Awake()
     {
         LoadSpec();
     }
 
+    void Start()
+    {
+        MONSTER_GOLD = Random.Range(100, 201);
+    }
+
     void OnEnable()
     {
-        CURRENT_HP = maxMonsterHp;
+        CURRENT_HP   = maxMonsterHp;
+        MONSTER_GOLD = Random.Range(100, 201); // 리스폰 시 골드 재설정
     }
 
     void LoadSpec()

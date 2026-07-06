@@ -142,22 +142,27 @@ public class Player : MonoBehaviour
     // 기본공격 이벤트키
     void Slash1()
     {
+        plSp.SetComboCount(1);
         basicAttackEf[0].SetActive(true);
     }
     void Slash2()
     {
+        plSp.SetComboCount(2);
         basicAttackEf[1].SetActive(true);
     }
     void Slash3()
     {
+        plSp.SetComboCount(3);
         basicAttackEf[2].SetActive(true);
     }
     void Slash4()
     {
+        plSp.SetComboCount(4);
         basicAttackEf[3].SetActive(true);
     }
     void Slash5()
     {
+        plSp.SetComboCount(5);
         for (int i = 0; i < finalEf.Length; i++)
         {
             finalEf[i].SetActive(true);

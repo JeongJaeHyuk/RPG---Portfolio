@@ -23,8 +23,8 @@ TagManager:
   - building
   - Terrain
   - NPC
-  - BasicAttack
-  - Spear
+  - PlayerBasicAttack
+  - 
   - 
   - MonsterAttack
   - 

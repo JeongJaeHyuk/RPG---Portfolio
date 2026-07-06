@@ -153,11 +153,6 @@ public class PlayerSpecs : MonoBehaviour
     {
         // LoadGame()에서 CSV 기본값을 읽어서 대입할 예정
     }
-    //테이블로 받아와서 입력하는 함수
-    public void SetStatas(float _curHP,float _maxHP,float _curMP,float _maxMP,float _curEXP,float _maxEXP)
-    {
-
-    }
 
     //레벨업을 햇을경우 공격력, 방어력, 체력, 마나 변경 함수
     void UpdatePlayerSpec(float _levValue)
@@ -178,6 +173,22 @@ public class PlayerSpecs : MonoBehaviour
     }
     public float SpearTotalDamage()
     {
-        return totalDamage * 1.2f; ;
+        return totalDamage * 1.2f;
+    }
+
+    // 콤보별 데미지 배율 (1~4번 콤보)
+    readonly float[] comboDamageMultiplier = { 0.7f, 0.8f, 0.9f, 1.0f, 1.2f };
+    public int ComboCount { get; private set; }
+
+    // 애니메이션 이벤트에서 콤보 카운트 설정
+    public void SetComboCount(int _count)
+    {
+        ComboCount = _count;
+    }
+
+    // 현재 콤보 카운트 기준 데미지 반환
+    public float GetComboDamage()
+    {
+        return totalDamage * comboDamageMultiplier[ComboCount - 1];
     }
 }
