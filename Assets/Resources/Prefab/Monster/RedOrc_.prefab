@@ -461,8 +461,9 @@ GameObject:
   - component: {fileID: 1968128150}
   - component: {fileID: 1968128151}
   - component: {fileID: 1968128149}
-  - component: {fileID: 1968128148}
-  - component: {fileID: 1968128147}
+  - component: {fileID: 1499696866}
+  - component: {fileID: 1499696867}
+  - component: {fileID: 1499696868}
   m_Layer: 7
   m_Name: RedOrc_
   m_TagString: Untagged
@@ -559,9 +560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a583b65786ca74598aa9e3372b731a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  IsPlayer: 0
---- !u!114 &1968128148
+  nav: {fileID: 0}
+  monsterState: {fileID: 0}
+  oriPos: {x: 0, y: 0, z: 0}
+--- !u!114 &1499696866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,10 +572,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7194626204888233856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb066eb5c63d2f4484457f12a5bf8f0, type: 3}
+  m_Script: {fileID: 11500000, guid: a6af21558e5f0d3418601ad7100f80a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1968128147
+  monsterRange: {fileID: 0}
+  monsterSpec: {fileID: 0}
+  ani: {fileID: 0}
+  attackCollider: {fileID: 4328010172792780547}
+--- !u!114 &1499696867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -582,16 +588,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7194626204888233856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c7bafc3fbf30440ab2cbdb865bcbee, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d18723ece5c2af46b14601dad03cb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSensor: {fileID: 4328010172792780547}
-  monsterSensor: {fileID: 8469630246954281095}
-  IsAttack: 0
-  IsAttacking: 0
-  coin: 0
-  minCoin: 500
-  maxCoin: 700
+--- !u!114 &1499696868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7194626204888233856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07651bf661d82b4c851aa4844ddec75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7194626204888233858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,15 +2280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3706717497982881301, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
+    - {fileID: 741507357, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
 --- !u!4 &8469630246954281094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3706717497982881303, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
-  m_PrefabInstance: {fileID: 5114624872242456209}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &8469630246954281095 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 3706717497982881302, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_PrefabInstance: {fileID: 5114624872242456209}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8469630246954281097 stripped
@@ -2285,7 +2292,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3706717497982881304, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_PrefabInstance: {fileID: 5114624872242456209}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &595235089
+--- !u!114 &806885530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2294,9 +2301,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8469630246954281097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58bd79efdeb779948939c41099097279, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b8822af25ff72c4c9f5d90a4830a458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterState: {fileID: 0}
 --- !u!1001 &5114624872916928148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2311,7 +2319,7 @@ PrefabInstance:
     - target: {fileID: 255004914, guid: 9924f11bcff21f74191d1fd07124d61d, type: 3}
       propertyPath: monsterStats
       value: 
-      objectReference: {fileID: 1968128148}
+      objectReference: {fileID: 0}
     - target: {fileID: 3739532509487511374, guid: 9924f11bcff21f74191d1fd07124d61d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2400,7 +2408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8857140567294971648, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
       propertyPath: m_Name
-      value: Attack_Check
+      value: AttackSensor
       objectReference: {fileID: 0}
     - target: {fileID: 8857140567294971649, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
       propertyPath: m_RootOrder
@@ -2446,7 +2454,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
+      propertyPath: m_Center.z
+      value: 1.08
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8857140567294971650, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
 --- !u!4 &4328010172792780545 stripped
 Transform:

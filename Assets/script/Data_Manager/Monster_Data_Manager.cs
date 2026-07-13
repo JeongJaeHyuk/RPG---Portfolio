@@ -19,6 +19,8 @@ public class MonsterData
     public float  attackRange;
     public float  attackSpeed;
     public float  exp;
+    public int    minGold;
+    public int    maxGold;
 }
 
 public class Monster_Data_Manager : MonoBehaviour
@@ -69,6 +71,8 @@ public class Monster_Data_Manager : MonoBehaviour
                 data.attackRange = float.Parse(col[4].Trim());
                 data.attackSpeed = float.Parse(col[5].Trim());
                 data.exp         = float.Parse(col[6].Trim());
+                data.minGold     = int.Parse(col[7].Trim());
+                data.maxGold     = int.Parse(col[8].Trim());
 
                 monsterTable[data.id] = data;
             }

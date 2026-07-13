@@ -61,7 +61,7 @@ playerLayer     = LayerMask.NameToLayer("PlayerBasicAttack");
             nav.enabled             = false; // 사망 시 NavMeshAgent 비활성화
             monsterState.EnterDead();
             GiveExp(_player);
-            // 이곳에 골드랑 루트백 소환해야함
+            DropRewards();
             StartCoroutine(SinkDown());
         }
     }
@@ -70,6 +70,21 @@ playerLayer     = LayerMask.NameToLayer("PlayerBasicAttack");
     void GiveExp(GameObject _player)
     {
         _player.GetComponent<PlayerProgression>().CURRENT_EXP += monsterSpec.MONSTER_EXP;
+    }
+
+    // 사망 시 골드와 전리품 주머니 드랍
+    void DropRewards()
+    {
+        CoinManager.Instance.DropCoin(gameObject, monsterSpec.MONSTER_GOLD);
+
+        string monsterName = gameObject.name.Split('_')[0];
+        DropData dropData = DropTable_Manager.instance.GetDropItem(monsterName);
+        if (dropData != null)
+        {
+            LootBag lootBag = LootBagPool.instance.GetLootBag();
+            lootBag.transform.position = transform.position;
+            lootBag.SetDropData(dropData);
+        }
     }
 
     // 사망 시 몬스터가 밑으로 가라앉다가 오브젝트 비활성화

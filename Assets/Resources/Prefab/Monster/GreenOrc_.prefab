@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &404313361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404313362}
+  - component: {fileID: 404313363}
+  m_Layer: 7
+  m_Name: AttackSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404313362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404313361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2614006285165906829}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &404313363
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404313361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 1, z: 1.08}
 --- !u!1 &2614006285165942305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,8 +1725,8 @@ GameObject:
   - component: {fileID: 366195471450346798}
   - component: {fileID: 461307722}
   - component: {fileID: 461307725}
-  - component: {fileID: 461307724}
-  - component: {fileID: 461307723}
+  - component: {fileID: 461307726}
+  - component: {fileID: 461307733}
   m_Layer: 7
   m_Name: GreenOrc_
   m_TagString: Untagged
@@ -1705,6 +1750,7 @@ Transform:
   - {fileID: 2614006285165906831}
   - {fileID: 5672146770236780204}
   - {fileID: 5630090532976296434}
+  - {fileID: 404313362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1789,9 +1835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a583b65786ca74598aa9e3372b731a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  IsPlayer: 0
---- !u!114 &461307724
+  nav: {fileID: 0}
+  monsterState: {fileID: 0}
+  oriPos: {x: 0, y: 0, z: 0}
+--- !u!114 &461307726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1800,10 +1847,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2614006285165942765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b8822af25ff72c4c9f5d90a4830a458, type: 3}
+  m_Script: {fileID: 11500000, guid: b07651bf661d82b4c851aa4844ddec75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &461307723
+--- !u!114 &461307733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1812,9 +1859,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2614006285165942765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdc9ecda7d4bf644c93d20466f4a99d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3edbab45292f5404a90570f3655440c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterRange: {fileID: 0}
+  monsterSpec: {fileID: 0}
+  ani: {fileID: 0}
+  attackCollider: {fileID: 404313363}
 --- !u!1 &2614006285165942767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323773395796eb24c9e36c5bf06b054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterStats: {fileID: 0}
+  monsterSpec: {fileID: 461307722}
   hpBar: {fileID: 0}
 --- !u!4 &5672146770236780204 stripped
 Transform:
@@ -2454,3 +2505,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3706717497982881303, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_PrefabInstance: {fileID: 9030559953289023461}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5630090532976296445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3706717497982881304, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
+  m_PrefabInstance: {fileID: 9030559953289023461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375663455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630090532976296445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8822af25ff72c4c9f5d90a4830a458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterState: {fileID: 0}

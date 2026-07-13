@@ -1,5 +1,5 @@
-ID,MonsterName,MaxHP,Damage,AttackRange,AttackSpeed,EXP
-1,BlueOrc,150,15,2,3,15
-2,GreenOrc,200,25,2,4,20
-3,RedOrc,300,35,2.5,3.5,30
-4,RockGolem,500,40,2,5,50
+ID,MonsterName,MaxHP,Damage,AttackRange,AttackSpeed,EXP,MinGold,MaxGold
+1,BlueOrc,150,15,2,3,15,100,200
+2,GreenOrc,200,25,2,4,20,250,300
+3,RedOrc,300,35,2.5,3.5,30,450,600
+4,RockGolem,500,40,2,5,50,400,800

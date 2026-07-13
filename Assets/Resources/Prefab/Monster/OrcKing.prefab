@@ -733,8 +733,6 @@ GameObject:
   - component: {fileID: 6418806718946741193}
   - component: {fileID: 6418806718946741192}
   - component: {fileID: 6418806718946741198}
-  - component: {fileID: 6418806718946741199}
-  - component: {fileID: 6418806718946741197}
   m_Layer: 7
   m_Name: OrcKing
   m_TagString: Untagged
@@ -831,39 +829,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a583b65786ca74598aa9e3372b731a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  IsPlayer: 0
---- !u!114 &6418806718946741199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666617528348690699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb066eb5c63d2f4484457f12a5bf8f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6418806718946741197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666617528348690699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c7bafc3fbf30440ab2cbdb865bcbee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSensor: {fileID: 2401029975067932129}
-  monsterSensor: {fileID: 1306831030891978517}
-  IsAttack: 0
-  IsAttacking: 0
-  coin: 0
-  minCoin: 300
-  maxCoin: 500
+  nav: {fileID: 0}
+  monsterState: {fileID: 0}
+  oriPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8666617528348690701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,7 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323773395796eb24c9e36c5bf06b054e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterStats: {fileID: 6418806718946741199}
+  monsterSpec: {fileID: 0}
   hpBar: {fileID: 1348635723610805983}
 --- !u!114 &1348635723610805983 stripped
 MonoBehaviour:
@@ -2388,34 +2356,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3706717497982881301, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
+    - {fileID: 741507357, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
 --- !u!4 &1306831030891978516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3706717497982881303, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
   m_PrefabInstance: {fileID: 2401029976900538627}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &1306831030891978517 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 3706717497982881302, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
-  m_PrefabInstance: {fileID: 2401029976900538627}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1306831030891978523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3706717497982881304, guid: 648ab1750c98da64eb728d1b70693c82, type: 3}
-  m_PrefabInstance: {fileID: 2401029976900538627}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &98451987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306831030891978523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58bd79efdeb779948939c41099097279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2401029976995774320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2537,13 +2484,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8857140567294971650, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
---- !u!65 &2401029975067932129 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 8857140567294971651, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
-  m_PrefabInstance: {fileID: 6609259372154239714}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2401029975067932131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8857140567294971649, guid: 963f57df79ee791488d3f324e15205ba, type: 3}
