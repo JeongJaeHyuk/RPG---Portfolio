@@ -24,7 +24,7 @@ TagManager:
   - Terrain
   - NPC
   - PlayerBasicAttack
-  -
+  - PlayerSkillAttack
   -
   - MonsterAttack
   - 

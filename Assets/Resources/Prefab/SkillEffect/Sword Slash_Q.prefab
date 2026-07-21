@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6754958175450208514}
   - component: {fileID: 5148795299111961726}
   - component: {fileID: -2165178110718925096}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sword Slash_Q
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4922,7 +4922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e839d09c38d6604c9bb89cc7869abd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSensor: {fileID: 0}
+  damageCollider: {fileID: 0}
   plsp: {fileID: 0}
   pps: {fileID: 0}
 --- !u!54 &-2165178110718925096
@@ -4952,7 +4952,7 @@ GameObject:
   - component: {fileID: 4421432858116271815}
   - component: {fileID: 4580896128756596559}
   - component: {fileID: 4582134211707063869}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Distortion(Delete for Mobile)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9834,7 +9834,7 @@ GameObject:
   - component: {fileID: 4421618403165970367}
   - component: {fileID: 4580812832419587683}
   - component: {fileID: 4581501498835486245}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14716,7 +14716,7 @@ GameObject:
   - component: {fileID: 4421964023239159885}
   - component: {fileID: 4606451890963014025}
   - component: {fileID: 4582010397058226691}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}

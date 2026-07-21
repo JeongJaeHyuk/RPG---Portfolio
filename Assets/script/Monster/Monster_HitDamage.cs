@@ -8,14 +8,16 @@ public class Monster_HitDamage : MonoBehaviour
     CapsuleCollider capsuleCollider;
     UnityEngine.AI.NavMeshAgent nav;
     int playerLayer;
+    int playerSkillLayer;
 
     void Awake()
     {
-        monsterState    = GetComponent<Monster_State>();
-        monsterSpec     = GetComponent<Monster_Spec>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
-        nav             = GetComponent<UnityEngine.AI.NavMeshAgent>();
-playerLayer     = LayerMask.NameToLayer("PlayerBasicAttack");
+        monsterState     = GetComponent<Monster_State>();
+        monsterSpec      = GetComponent<Monster_Spec>();
+        capsuleCollider  = GetComponent<CapsuleCollider>();
+        nav              = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        playerLayer      = LayerMask.NameToLayer("PlayerBasicAttack");
+        playerSkillLayer = LayerMask.NameToLayer("PlayerSkillAttack");
     }
 
     void OnEnable()
@@ -34,6 +36,12 @@ playerLayer     = LayerMask.NameToLayer("PlayerBasicAttack");
             if (playerSpecs == null) return;
             if (playerSpecs.ComboCount == 0) return; // 공격 이펙트가 아닌 몸통 충돌 무시
             TakeDamage(playerSpecs.GetComboDamage(), playerSpecs.gameObject);
+        }
+        else if (other.gameObject.layer == playerSkillLayer)
+        {
+            Skill_Effect skillEffect = other.GetComponent<Skill_Effect>();
+            if (skillEffect == null) return;
+            TakeDamage(skillEffect.SkillAttack(), skillEffect.GetPlayer());
         }
     }
 

@@ -929,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469262021, guid: 297bed406f2fd2a4b90d89fd5bf60bdd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.05428411
+      value: 0.000052660827
       objectReference: {fileID: 0}
     - target: {fileID: 558599278, guid: 297bed406f2fd2a4b90d89fd5bf60bdd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3209,6 +3209,10 @@ PrefabInstance:
       propertyPath: quickSlots.Array.data[3]
       value: 
       objectReference: {fileID: 549439302}
+    - target: {fileID: 709840878764833384, guid: e5ef72378974cc94ea08af6398f4eb8b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 709840879817590234, guid: e5ef72378974cc94ea08af6398f4eb8b, type: 3}
       propertyPath: m_RootOrder
       value: 14

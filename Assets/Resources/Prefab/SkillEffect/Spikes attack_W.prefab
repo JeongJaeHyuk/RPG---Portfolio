@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5678290529249213656}
   - component: {fileID: 5484392795600460840}
   - component: {fileID: 5483523595738112450}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 5679829907983409246}
   - component: {fileID: 5484487553644901860}
   - component: {fileID: 5483431740757186912}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWaveDis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9775,7 +9775,7 @@ GameObject:
   - component: {fileID: 5678245427147762928}
   - component: {fileID: 5484776613070213404}
   - component: {fileID: 5484228260865592632}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SparksLong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14666,7 +14666,7 @@ GameObject:
   - component: {fileID: 5679950243085847474}
   - component: {fileID: 5504001329001670954}
   - component: {fileID: 5483419931330894260}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SmokeDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19548,7 +19548,7 @@ GameObject:
   - component: {fileID: 5679938169324585974}
   - component: {fileID: 5484665299516470274}
   - component: {fileID: 5484235308279268156}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24430,7 +24430,7 @@ GameObject:
   - component: {fileID: 5678204874904599066}
   - component: {fileID: 5484415352920908000}
   - component: {fileID: 5483549747362493978}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWaveDarkGroud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29324,7 +29324,7 @@ GameObject:
   - component: {fileID: 8652917698409544920}
   - component: {fileID: 1159079489}
   - component: {fileID: 7750932583683341568}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spikes attack_W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34232,7 +34232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29669e1eca17f94aa0d2897814686e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSensor: {fileID: 0}
+  damageCollider: {fileID: 0}
   plsp: {fileID: 0}
   pps: {fileID: 0}
 --- !u!54 &7750932583683341568
@@ -34262,7 +34262,7 @@ GameObject:
   - component: {fileID: 5679957172685754370}
   - component: {fileID: 5484504115988991800}
   - component: {fileID: 5483442962339199274}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39144,7 +39144,7 @@ GameObject:
   - component: {fileID: 5678325151663498472}
   - component: {fileID: 5484522928953165922}
   - component: {fileID: 5483463466814278278}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWaveDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44035,7 +44035,7 @@ GameObject:
   - component: {fileID: 5678195553711905546}
   - component: {fileID: 5484525824994094232}
   - component: {fileID: 5484841971806833440}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48926,7 +48926,7 @@ GameObject:
   - component: {fileID: 5678106574462930240}
   - component: {fileID: 5485168213948809188}
   - component: {fileID: 5484829946642223792}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53817,7 +53817,7 @@ GameObject:
   - component: {fileID: 5679666152020199808}
   - component: {fileID: 5484504301005484746}
   - component: {fileID: 5483651190941317322}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58708,7 +58708,7 @@ GameObject:
   - component: {fileID: 5678420003431323374}
   - component: {fileID: 5485335993723861250}
   - component: {fileID: 5483480108306332250}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

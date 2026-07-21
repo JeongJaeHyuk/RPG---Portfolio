@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9115012483774731605}
   - component: {fileID: 248153350326552606}
   - component: {fileID: 5678122066187310878}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sword Slash_E
   m_TagString: Untagged
   m_Icon: {fileID: 0}

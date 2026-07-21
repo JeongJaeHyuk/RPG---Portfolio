@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1387723892876716681}
   - component: {fileID: 5910259860725903723}
   - component: {fileID: -7869399859563966037}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sword Slash_E-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4919,10 +4919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44a3a28b0e127e49a901a76a5abdf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCol: {fileID: 0}
+  damageCollider: {fileID: 0}
   plsp: {fileID: 0}
   pps: {fileID: 0}
-  moveOn: 0
   skillName: Blade storm
   damageMultiplier: 0.5
 --- !u!54 &-7869399859563966037
