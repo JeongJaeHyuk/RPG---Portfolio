@@ -3,3 +3,4 @@ ID,MonsterName,MaxHP,Damage,AttackRange,AttackSpeed,EXP,MinGold,MaxGold
 2,GreenOrc,200,25,2,4,20,250,300
 3,RedOrc,300,35,2.5,3.5,30,450,600
 4,RockGolem,500,40,2,5,50,400,800
+5,OrcKing,3000,70,3,4,500,1000,3000

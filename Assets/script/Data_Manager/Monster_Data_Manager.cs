@@ -7,7 +7,8 @@ public enum MonsterType
     BlueOrc   = 1,
     GreenOrc  = 2,
     RedOrc    = 3,
-    RockGolem = 4
+    RockGolem = 4,
+    OrcKing   = 5
 }
 
 public class MonsterData
