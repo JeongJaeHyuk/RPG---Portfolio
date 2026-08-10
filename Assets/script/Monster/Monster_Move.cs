@@ -66,7 +66,7 @@ public class Monster_Move : MonoBehaviour
         }
     }
 
-    void LookAtPlayer()
+    public void LookAtPlayer()
     {
         Vector3 dir = monsterState.GetPlayer().transform.position - transform.position;
         dir.y = 0;

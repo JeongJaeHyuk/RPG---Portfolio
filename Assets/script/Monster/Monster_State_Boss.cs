@@ -26,7 +26,17 @@ public class Monster_State_Boss : Monster_State
 
     float lastShoutTime = -999f;
     int selectedFarSkill; // 3: Slash Attack, 4: Leaping Strike - 이번에 고른 것
-    bool combatStarted;   // 등장 연출(Jumping Down -> Shout -> Idle)이 끝나기 전엔 false
+
+    // 등장 연출 중 오작동 방지 - PlayerSensor 콜라이더를 안 꺼도 코드로 한 번 더 막아주는 안전장치
+    bool combatStarted;
+
+    Monster_Move monsterMove;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        monsterMove = GetComponent<Monster_Move>();
+    }
 
     // 근접 사거리(Monster_Move가 감지) 안까지 다가왔을 때 호출 - 근접 패턴만 담당
     public override void EnterAttack()
@@ -36,11 +46,12 @@ public class Monster_State_Boss : Monster_State
         ani.SetInteger("Skill_Attack", Random.Range(1, 3)); // 1: Overhead Slash, 2: ComboAttack
     }
 
-    // 등장 연출이 끝나는 지점(Shout 인트로 클립 끝)에 애니메이션 이벤트로 호출
-    // 그 순간부터 쿨타임이 돌기 시작하고, 그때까지 꺼둔 PlayerSensor 콜라이더도 켜서 감지를 시작한다
+    // "Shout"(등장) State 전용 - 클립을 공유하는 "Shout 0"엔 안 걸려서 전투 중엔 호출 안 됨
     public void StartCombat()
     {
         combatStarted = true;
+
+        // 리셋 안 하면 전투 시작하자마자 샤우트 패턴이 바로 나감 - 첫 쿨타임만큼 근접만 나오게 하려는 의도적 설정
         lastShoutTime = Time.time;
 
         Collider sensorCollider = monsterRange.GetComponent<Collider>();
@@ -78,6 +89,7 @@ public class Monster_State_Boss : Monster_State
         lastShoutTime = Time.time;
         isAttacking = true;
         ani.SetInteger("Move", 0);
+        monsterMove.LookAtPlayer(); // Monster_Move를 거치지 않는 경로라 회전을 직접 호출
         ani.SetTrigger("Attack_Ready");
 
         if (dist <= closeRangeThreshold)
