@@ -124,8 +124,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.589, z: 0.0969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3492703829914539749}
+  m_Children: []
   m_Father: {fileID: 433003968}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -861,10 +860,10 @@ GameObject:
   - component: {fileID: 8666617528358058679}
   - component: {fileID: 6418806718946741193}
   - component: {fileID: 6418806718946741192}
-  - component: {fileID: 6418806718946741198}
   - component: {fileID: 289470360}
   - component: {fileID: 289470361}
   - component: {fileID: 289470362}
+  - component: {fileID: 8279029756148293537}
   m_Layer: 7
   m_Name: OrcKing
   m_TagString: Untagged
@@ -950,21 +949,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6418806718946741198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666617528348690699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a583b65786ca74598aa9e3372b731a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nav: {fileID: 0}
-  monsterState: {fileID: 0}
-  oriPos: {x: 0, y: 0, z: 0}
 --- !u!114 &289470360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,9 +968,12 @@ MonoBehaviour:
   meleePoint: {fileID: 748111922}
   breathPoint: {fileID: 1014919964}
   farPoint: {fileID: 830247568}
+  meleeSkillIds: 0100000002000000
   shoutCooldown: 10
   shoutRange: 8
   closeRangeThreshold: 3
+  closeSkillIds: 04000000
+  farSkillIds: 03000000
 --- !u!114 &289470361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +998,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d18723ece5c2af46b14601dad03cb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8279029756148293537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8666617528348690699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9499906396c5642bd98ed2720c9741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nav: {fileID: 0}
+  monsterState: {fileID: 0}
+  oriPos: {x: 0, y: 0, z: 0}
+  rotateSpeed: 720
 --- !u!1 &8666617528348690701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,68 +2452,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400008, guid: cf1bca8c60650ae43b6115e6cc5443ec, type: 3}
   m_PrefabInstance: {fileID: 1483844305}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &445099532142009422
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1014919964}
-    m_Modifications:
-    - target: {fileID: 643968627078342850, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_Name
-      value: 'BreathAttack '
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
---- !u!4 &3492703829914539749 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3915277387662068395, guid: d251a363e62f7a443a76e1c38e8a0e4d, type: 3}
-  m_PrefabInstance: {fileID: 445099532142009422}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2401029976045455108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2799,6 +2740,10 @@ PrefabInstance:
     - target: {fileID: 1901904082796554404, guid: c66e5fe5bfd5a184da203966c224b340, type: 3}
       propertyPath: m_Name
       value: Overhead_Slash_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901904082796554404, guid: c66e5fe5bfd5a184da203966c224b340, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3676177638255728121, guid: c66e5fe5bfd5a184da203966c224b340, type: 3}
       propertyPath: m_RootOrder
