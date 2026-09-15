@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3915277387662068395}
+  - component: {fileID: 24412888}
   m_Layer: 0
   m_Name: 'BreathAttack '
   m_TagString: Untagged
@@ -23,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643968627078342850}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
@@ -33,6 +34,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &24412888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643968627078342850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe44b1159b1723a43a676f035f3a56c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCollider: {fileID: 8774704566475538668}
+  damageRatio: 0.3
+  hitDuration: 0.5
+  lifeTime: 1.5
+  tickOnTime: 0.3
+  tickOffTime: 0.2
+  tickCount: 4
 --- !u!1 &3935692039784930087
 GameObject:
   m_ObjectHideFlags: 0
